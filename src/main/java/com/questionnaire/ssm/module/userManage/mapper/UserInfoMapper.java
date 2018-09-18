@@ -50,5 +50,7 @@ public interface UserInfoMapper {
 
     List<AllRoleInfoVO> listAllRole() throws Exception;
 
+    List<AllUnitInfoVO> listAllUnit() throws Exception;
+
 
 }
