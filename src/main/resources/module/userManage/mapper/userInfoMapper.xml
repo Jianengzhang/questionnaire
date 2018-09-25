@@ -102,4 +102,8 @@
     <select id="listAllRole" resultType="com.questionnaire.ssm.module.userManage.pojo.AllRoleInfoVO">
         SELECT * FROM role
     </select>
+
+    <select id="listAllUnit" resultType="com.questionnaire.ssm.module.userManage.pojo.AllUnitInfoVO">
+        SELECT * FROM unit
+    </select>
 </mapper>

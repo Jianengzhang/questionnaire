@@ -75,6 +75,7 @@ public interface UserInfoService {
      * @throws Exception
      */
     List<AllRoleInfoVO> listAllRole() throws Exception;
+    List<AllUnitInfoVO> listAllUnit() throws Exception;
 
     /**
      * 更新用户权限信息

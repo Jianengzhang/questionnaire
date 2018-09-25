@@ -3,13 +3,11 @@ package com.questionnaire.ssm.module.userManage.controller;
 import com.questionnaire.ssm.module.global.constant.CONSTANT;
 import com.questionnaire.ssm.module.global.enums.CodeForVOEnum;
 import com.questionnaire.ssm.module.global.pojo.ResponsePkt;
+import com.questionnaire.ssm.module.global.pojo.UnitInfoVO;
 import com.questionnaire.ssm.module.global.util.ResultUtil;
 import com.questionnaire.ssm.module.global.util.UserValidationUtil;
 import com.questionnaire.ssm.module.userManage.enums.UserActionEnum;
-import com.questionnaire.ssm.module.userManage.pojo.AllRoleInfoVO;
-import com.questionnaire.ssm.module.userManage.pojo.NewUserAuthorityInfo;
-import com.questionnaire.ssm.module.userManage.pojo.RoleAuthorityVO;
-import com.questionnaire.ssm.module.userManage.pojo.UploadResultVO;
+import com.questionnaire.ssm.module.userManage.pojo.*;
 import com.questionnaire.ssm.module.userManage.service.UploadFileService;
 import com.questionnaire.ssm.module.userManage.service.UserInfoService;
 import org.slf4j.Logger;
@@ -27,6 +25,7 @@ import java.util.List;
 
 /**
  * Created by 郑晓辉 on 2017/4/16.
+ * Modified by 张佳能 on 2018/9./18
  * Description: 用户管理，包括用户信息数据上传、单位信息上传
  */
 @Controller
@@ -250,6 +249,28 @@ public class UserManageController {
         }
         userInfoService.updateUserAuthorityInfo(newUserAuthorityInfo);
         return ResultUtil.success();
+    }
+
+    /**
+     * 单位管理
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/getUnitView")
+    public String getUnitView() throws Exception {
+     return "roleAuthority/unitManager";
+    }
+
+    /**
+     * 获取所有信息
+     *
+     * @return
+     * @throws Exception
+     */
+    @GetMapping(value = "/getAllUnit")
+    @ResponseBody
+    public List<AllUnitInfoVO> getAllUnit() throws Exception {
+        return userInfoService.listAllUnit();
     }
 
     private List<UploadResultVO> uploadResultVOList;

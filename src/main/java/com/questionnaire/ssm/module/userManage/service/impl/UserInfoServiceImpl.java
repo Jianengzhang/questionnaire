@@ -150,6 +150,11 @@ public class UserInfoServiceImpl implements UserInfoService {
     public List<AllRoleInfoVO> listAllRole() throws Exception {
         return userInfoMapper.listAllRole();
     }
+    @Override
+    public List<AllUnitInfoVO> listAllUnit() throws Exception {
+        return userInfoMapper.listAllUnit();
+    }
+
 
     /**
      * 更新用户权限信息
