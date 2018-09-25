@@ -79,6 +79,7 @@ $(function () {
                 formatter: operateFormatter
             }]
     });
+    
 });
 
 //单份处理

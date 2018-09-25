@@ -5,16 +5,10 @@
 var $table = $('#unitTable');
 var tableDataUrl = '/unitManage/getUnit';
 
-// //批量启用按钮
-// var $multiEnableBtn = $('#multiEnableBtn');
-// //批量禁用按钮
-// var $multiDisableBtn = $('#multiDisableBtn');
 
 //单位添加按钮
 var $addUnit = $('#addUnit');
 
-// var enableUserAccountUrl = '/userManage/multiEnableUnitAccount';
-// var disableUserAccountUrl = '/userManage/multiDisableUnitAccount';
 var addUnitUrl = '/unitMange/addUnit'
 
 $(function () {
@@ -25,7 +19,7 @@ $(function () {
         cache: false,
         striped: true,
         undefinedText: '--',
-        sortName: ['unitName', 'unitLevel', 'unitProvince', 'unitCity', 'unitAdress'],
+        sortName: ['unitId','unitName', 'unitLevel', 'unitProvince', 'unitCity', 'unitAdress'],
         sortOrder: 'desc',
         height: getHeight(),
 
@@ -50,10 +44,7 @@ $(function () {
         minimumCountColumns: 3,
         //detailView: true,详细列表
         //detailFormatter: detailFormatter,
-        columns: [{
-            checkbox: true,
-            clickToSelect: true
-        }, {
+        columns: [ {
             field: 'unitName',
             title: '单位名称',
             sortable: true
@@ -73,133 +64,30 @@ $(function () {
             {
                 field: 'unitAdress',
                 title: '单位地址'
-        }, {
-                title: '操作',
-                align: 'center',
-                events: operateEvents,
-                formatter: operateFormatter
-            }]
+        }]
     });
 });
 
-//单份处理
-window.operateEvents = {
 
-    //编辑用户角色
-    'click .check': function (e, value, row, index) {
-        layer.open({
-            type: 2,
-            title: '编辑内容',
-            maxmin: true,
-            content: '/unitManage/getUnit' +
-            '&unitName = ' + row.unitName
-            + '&unitLevel = ' + row.unitLevel
-            + '?unitProvice = ' + row.unitProvince
-            + '?unitCity = ' + row.unitCity
-            + '?unitAddress' + row.unitAddress,
-            //传递用户账户以及真实姓名
-            area: ['80%', '80%'],
-            resize: true
-        });
-    },
-};
 
 function refreshTable() {
     $table.bootstrapTable('refresh', {});
 }
 
-//操作按钮格式设置
-function operateFormatter(value, row, index) {
-    var htmlElement = [];
-    // if (row.isAccountValid === '有效') {
-    //     htmlElement.push('<a class="check btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="编辑">',
-    //         '<i class="glyphicon glyphicon-check"></i> 编辑',
-    //         '</a>');
-    //     htmlElement.push('<a class="disableAccount btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="永久删除问卷">',
-    //         '<i class="glyphicon glyphicon-ban-circle"></i> 禁用',
-    //         '</a>');
-    // }
-    // if (row.isAccountValid === '无效') {
-    //     htmlElement.push('<a class="enableAccount btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="永久删除问卷">',
-    //         '<i class="glyphicon glyphicon-ok-sign"></i> 启用',
-    //         '</a>');
-    // }
-    // htmlElement.push('<a class="remove btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="永久删除问卷">',
-    //     '<i class="glyphicon glyphicon-remove"></i> 删除',
-    //     '</a>');
-    htmlElement.push('<a class="check btn btn-sm btn-link" href="javascript:void(0)" data-toggle="tooltip" title="编辑">',
-            '<i class="glyphicon glyphicon-check"></i> 编辑',
-            '</a>')
-    return htmlElement.join('');
-}
+$addUnit.on('click',function(){
+    layer.open({
+        type:2,
+        title:"单位添加",
+        maxmin:true,
+        //写成后台方法名吧，跳转地址
+        content:"../../view/unit/unitManager.html",
+        area: ['80%', '80%'],
+        resize: true
+    }) 
+})
 
-// //批量永久删除处理
-// $multiDelBtn.on('click', function () {
-//     var ids = getIdSelections();
-//     if (!checkIsSelectedOne(ids)) {
-//         return;
-//     }
-//     layerConfirmMulti("确认删除选中的账户吗?", ids, deleteUserAccountUrl);
-// });
-// //批量启用账户
-// $multiEnableBtn.on('click', function () {
-//     var ids = getIdSelections();
-//     if (!checkIsSelectedOne(ids)) {
-//         return;
-//     }
-//     layerConfirmMulti("确认启用选中的账户吗?", ids, enableUserAccountUrl);
-// });
-// //批量禁用账户
-// $multiDisableBtn.on('click', function () {
-//     var ids = getIdSelections();
-//     if (!checkIsSelectedOne(ids)) {
-//         return;
-//     }
-//     layerConfirmMulti("确认禁用选中的账户吗?", ids, disableUserAccountUrl);
-// });
 
-//单个操作确认弹窗
-function layerConfirmSingle(confirmText, row, url) {
-    layer.confirm(confirmText, {
-            icon: 3,
-            btn: ['确定', '取消']
-        },
-        function (index) {
-            var ids = [];
-            ids.push(row.account);
-            accessServer(ids, url);
-            layer.close(index);
-        },
-        function () {
-            layer.msg('取消成功！');
-        }
-    )
-}
-
-//批量操作确认弹窗
-function layerConfirmMulti(confirmText, ids, url) {
-    layer.confirm(confirmText, {
-            icon: 3,
-            btn: ['确定', '取消']
-        },
-        function (index) {
-            accessServer(ids, url);
-            layer.close(index);
-        },
-        function () {
-            layer.msg('取消成功！');
-        }
-    );
-}
-
-/*检查是否选中*/
-function checkIsSelectedOne(ids) {
-    if (0 === ids.length) {
-        layer.msg('还未选择操作!', {icon: 5});
-        return false;
-    }
-    return true;
-}
+//需要确认是否影响页面内容加载？
 
 /**
  * 异步加载服务器
