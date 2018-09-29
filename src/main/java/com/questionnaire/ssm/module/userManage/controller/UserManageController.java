@@ -1,13 +1,14 @@
 package com.questionnaire.ssm.module.userManage.controller;
 
+import com.questionnaire.ssm.module.generated.pojo.Unit;
 import com.questionnaire.ssm.module.global.constant.CONSTANT;
 import com.questionnaire.ssm.module.global.enums.CodeForVOEnum;
 import com.questionnaire.ssm.module.global.pojo.ResponsePkt;
-import com.questionnaire.ssm.module.global.pojo.UnitInfoVO;
 import com.questionnaire.ssm.module.global.util.ResultUtil;
 import com.questionnaire.ssm.module.global.util.UserValidationUtil;
 import com.questionnaire.ssm.module.userManage.enums.UserActionEnum;
 import com.questionnaire.ssm.module.userManage.pojo.*;
+import com.questionnaire.ssm.module.userManage.service.UnitInfoService;
 import com.questionnaire.ssm.module.userManage.service.UploadFileService;
 import com.questionnaire.ssm.module.userManage.service.UserInfoService;
 import org.slf4j.Logger;
@@ -258,8 +259,29 @@ public class UserManageController {
      */
     @GetMapping("/getUnitView")
     public String getUnitView() throws Exception {
-     return "roleAuthority/unitManager";
+     return "unit/unit";
     }
+
+    @GetMapping("/addUnit")
+    public String addUnit() {
+        return "unit/unitManage";
+    }
+
+    @PostMapping(value = "/insertUnit")
+    @ResponseBody
+    public ResponsePkt insertUnit(@RequestBody Unit unit) throws Exception {
+        //用户参数校验
+        if (unit.getUnitName().isEmpty()
+                || unit.getUnitName() == null) {
+            return ResultUtil.error(CodeForVOEnum.NEW_UNIT_DATA_ERROR.getCode(),
+                    CodeForVOEnum.NEW_UNIT_DATA_ERROR.getMessage());
+        }
+
+        unitInfoService.InsertUnitInfo(unit);
+        return ResultUtil.success();
+    }
+
+
 
     /**
      * 获取所有信息
@@ -277,11 +299,13 @@ public class UserManageController {
     private final static Logger logger = LoggerFactory.getLogger(UserManageController.class);
     private UploadFileService uploadFileService;
     private UserInfoService userInfoService;
+    private UnitInfoService unitInfoService;
 
     @Autowired
     public UserManageController(UploadFileService uploadFileService,
-                                UserInfoService userInfoService) {
+                                UserInfoService userInfoService,UnitInfoService unitInfoService) {
         this.uploadFileService = uploadFileService;
         this.userInfoService = userInfoService;
+        this.unitInfoService = unitInfoService;
     }
 }

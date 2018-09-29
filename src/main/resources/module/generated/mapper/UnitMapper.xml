@@ -144,7 +144,7 @@
     insert into unit (unit_name, unit_code, unit_level, 
       unit_province, unit_city, address
       )
-    values (#{unitName,jdbcType=VARCHAR}, #{unitCode,jdbcType=VARCHAR}, #{unitLevel,jdbcType=VARCHAR}, 
+    values (#{unitName,jdbcType=VARCHAR}, #{unitCode,jdbcType=VARCHAR}, #{unitLevel,jdbcType=VARCHAR},
       #{unitProvince,jdbcType=VARCHAR}, #{unitCity,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
       )
   </insert>

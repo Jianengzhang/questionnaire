@@ -2,6 +2,7 @@ package com.questionnaire.ssm.module.userManage.mapper;
 
 import com.questionnaire.ssm.module.userManage.pojo.*;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  * Created by 郑晓辉 on 2017/5/1.
  * Description:
  */
+@Repository
 public interface UserInfoMapper {
     /**
      * 根据用户账户名查询用户信息
