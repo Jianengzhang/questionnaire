@@ -1,7 +1,9 @@
 package com.questionnaire.ssm.module.login.mapper;
 
-import java.util.Set;
+import org.springframework.stereotype.Repository;
 
+import java.util.Set;
+@Repository
 public interface SysUserMapper {
 
     Set<String> listUserRole(String userTel) throws Exception;

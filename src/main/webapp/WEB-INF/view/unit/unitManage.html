@@ -12,11 +12,9 @@
         .col-xs-2 {
             text-align: center;
         }
-
         .col-xs-4 {
             text-align: center;
         }
-
         .container {
             padding-right: 5px;
             padding-left: 5px;
@@ -38,7 +36,19 @@
                             <div class="control-label col-xs-2">单位名称：</div>
                             <div class="col-xs-9">
                                 <!-- 后端路径未填写,id修改过 -->
-                                <input id='unitname' class="form-control"  placeholder="请填写单位名称"/>
+                                <input id="unitName" class="form-control" placeholder="请填写单位名称"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="control-label col-xs-2">单位编号：</div>
+                            <div class="col-xs-9">
+                                <!-- 后端路径未填写,id修改过 -->
+                                <input id='unitCode' class="form-control"  placeholder="请填写单位编号"/>
                             </div>
                         </div>
                     </div>
@@ -50,7 +60,7 @@
                             <!-- 后端路径未填写，id已修改 -->
                             <div class="control-label col-xs-2">单位级别：</div>
                             <div class="col-xs-9">
-                                <input id="level" class="form-control" placeholder="请填写单位级别"/>
+                                <input id="level" class="form-control"  placeholder="请填写单位级别"/>
                             </div>
                         </div>
                     </div>
@@ -62,7 +72,7 @@
                             <!-- 后端路径未填写，id已修改 -->
                             <div class="control-label col-xs-2">所在省份：</div>
                             <div class="col-xs-9">
-                                <input id="province" class="form-control" placeholder="请填写所在省份"/>
+                                <input id="province" class="form-control"  placeholder="请填写所在省份"/>
                             </div>
                         </div>
                     </div>
@@ -74,7 +84,7 @@
                             <!-- 后端路径未填写，id已修改 -->
                             <div class="control-label col-xs-2">所在城市：</div>
                             <div class="col-xs-9">
-                                <input id="city" class="form-control" placeholder="请填写所在城市"/>
+                                <input id="city" class="form-control"  placeholder="请填写所在城市"/>
                             </div>
                         </div>
                     </div>
@@ -85,7 +95,7 @@
                             <!-- 后端路径未填写，id已修改 -->
                             <div class="control-label col-xs-2">单位地址：</div>
                             <div class="col-xs-9">
-                                <input id='address' class="form-control" placeholder="请填写单位地址"/> 
+                                <input id='address' class="form-control " placeholder="请填写单位地址"/>
                             </div>
                         </div>
                     </div>
@@ -117,7 +127,8 @@
     $('#submitDataBtn').on('click',function(){
         var newUnitInfo = {};
         //获取单位信息
-        var unitName = $('#unitname').val();
+        var unitName = $('#unitName').val();
+        var unitCode = $('#unitCode').val();
         var unitLevel = $('#level').val();
         var unitProvince = $('#province').val();
         var unitCity = $('#city').val();
@@ -129,7 +140,7 @@
                 layer.msg("单位名称不得为空!", function () {
                 });
             });
-             return;
+            return;
         }
         if(unitName == 'NULL')
         {
@@ -138,21 +149,19 @@
                 layer.msg("单位名称不得为空!", function () {
                 });
             });
-             return;
+            return;
         }
         newUnitInfo.unitName = unitName;
+        newUnitInfo.unitCode = unitCode
         newUnitInfo.unitLevel = unitLevel;
         newUnitInfo.unitProvince = unitProvince;
         newUnitInfo.unitCity = unitCity;
-        newUnitInfo.unitAddress = unitAddress;
-
-        //地址需要后台来写
-        var updateUnitUrl = '';
-
+        newUnitInfo.address = unitAddress;
+        var AddUnitUrl = '/userManage/insertUnit';
         layui.use('layer', function () {
             var layer = layui.layer;
             $.ajax({
-                url: updateUnitUrl,
+                url: AddUnitUrl,
                 contentType: "application/json;charset=utf-8",
                 type: 'post',
                 dataType: 'json',
@@ -176,14 +185,11 @@
                 }
             });
         });
-
     })
-
     /*取消按钮*/
     $('#cancelBtn').on('click', function () {
         layui.use('layer', closeLayer());
     });
-
     /**
      * 关闭 layer 层
      */

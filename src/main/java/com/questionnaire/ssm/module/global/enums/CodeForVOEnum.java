@@ -37,6 +37,8 @@ public enum CodeForVOEnum {
     PASSWORD_TOO_SHORT(19, "密码长度不能短于6位！"),
     USER_TEL_NULL(20, "用户名不得为空！"),
 
+    NEW_UNIT_DATA_ERROR(21, "单位信息数据错误!"),
+
     /*结果分析无数据*/
     NO_RESULT_FOR_ANALYZE(600, "此次调查尚未提交或无可分析数据（单选、多选等）！"),
 
