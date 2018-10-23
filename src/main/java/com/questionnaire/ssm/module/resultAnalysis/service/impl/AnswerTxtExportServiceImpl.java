@@ -59,7 +59,15 @@ public class AnswerTxtExportServiceImpl implements AnswerTxtExportService {
         Iterator<ExportTxtDataDTO.KeySetNode> iterator = sheetDataMap.keySet().iterator();
         ExportTxtDataDTO.KeySetNode curKeyNode;
         List<ExportTxtDataDTO.ValueNode> curValueList;
-
+        Set<ExportTxtDataDTO.KeySetNode> arr=sheetDataMap.keySet();
+        List<ExportTxtDataDTO.KeySetNode>list= new ArrayList<ExportTxtDataDTO.KeySetNode>(arr);
+        Collections.sort(list, new Comparator<ExportTxtDataDTO.KeySetNode>() {
+            @Override
+            public int compare(ExportTxtDataDTO.KeySetNode o1, ExportTxtDataDTO.KeySetNode o2) {
+                return (int) (o1.getQesID()-o2.getQesID());
+            }
+        });
+        iterator=list.iterator();
         Sheet curSheet;
         Row curRow;
         for (int sheetIndex = 0; sheetIndex < sheetNum; sheetIndex++) {

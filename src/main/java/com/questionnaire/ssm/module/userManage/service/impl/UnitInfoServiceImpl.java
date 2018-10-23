@@ -5,7 +5,7 @@ import com.questionnaire.ssm.module.generated.pojo.Unit;
 import com.questionnaire.ssm.module.global.enums.CodeForVOEnum;
 import com.questionnaire.ssm.module.global.enums.DBTableEnum;
 import com.questionnaire.ssm.module.global.exception.OperateDBException;
-import com.questionnaire.ssm.module.userManage.mapper.UnitManageMapper;
+//import com.questionnaire.ssm.module.userManage.mapper.UnitManageMapper;
 import com.questionnaire.ssm.module.userManage.service.UnitInfoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,12 +45,12 @@ public class UnitInfoServiceImpl implements UnitInfoService {
         }
     }
 
-    private UnitManageMapper unitManageMapper;
+    //private UnitManageMapper unitManageMapper;
     private UnitMapper unitMapper;
     private final static Logger logger = LoggerFactory.getLogger(UserInfoServiceImpl.class);
 
-    public UnitInfoServiceImpl(UnitManageMapper unitManageMapper, UnitMapper unitMapper) {
-        this.unitManageMapper = unitManageMapper;
+    public UnitInfoServiceImpl(/*UnitManageMapper unitManageMapper,*/ UnitMapper unitMapper) {
+        //this.unitManageMapper = unitManageMapper;
         this.unitMapper = unitMapper;
     }
 }
