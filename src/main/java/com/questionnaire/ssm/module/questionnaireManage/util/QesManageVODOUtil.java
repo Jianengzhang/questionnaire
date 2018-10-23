@@ -204,6 +204,15 @@ public class QesManageVODOUtil {
         if (QuestionTypeEnum.TIME_POINT.getCode().equals(typeCode)) {
             return QuestionTypeEnum.TIME_POINT.getQuestionType();
         }
+        if (QuestionTypeEnum.MIX_CHOICE.getCode().equals(typeCode)){
+            return QuestionTypeEnum.MIX_CHOICE.getQuestionType();
+        }
+        if (QuestionTypeEnum.UPLOAD_PICTURE.getCode().equals(typeCode)){
+            return QuestionTypeEnum.UPLOAD_PICTURE.getQuestionType();
+        }
+        if (QuestionTypeEnum.MULTIMEDIA_UPLOAD.getCode().equals(typeCode)){
+            return QuestionTypeEnum.MULTIMEDIA_UPLOAD.getQuestionType();
+        }
         return QuestionTypeEnum.UNKNOWN_TYPE.getQuestionType();
     }
 
@@ -242,6 +251,15 @@ public class QesManageVODOUtil {
         }
         if (QuestionTypeEnum.TIME_POINT.getQuestionType().equals(typeString)) {
             return QuestionTypeEnum.TIME_POINT.getCode();
+        }
+        if (QuestionTypeEnum.MIX_CHOICE.getQuestionType().equals(typeString)) {
+            return QuestionTypeEnum.MIX_CHOICE.getCode();
+        }
+        if (QuestionTypeEnum.UPLOAD_PICTURE.getQuestionType().equals(typeString)) {
+            return QuestionTypeEnum.UPLOAD_PICTURE.getCode();
+        }
+        if (QuestionTypeEnum.MULTIMEDIA_UPLOAD.getQuestionType().equals(typeString)) {
+            return QuestionTypeEnum.MULTIMEDIA_UPLOAD.getCode();
         }
         return QuestionTypeEnum.UNKNOWN_TYPE.getCode();
     }
@@ -364,7 +382,10 @@ public class QesManageVODOUtil {
                 || questionTypeCode.equals(QuestionTypeEnum.PICTURE_SINGLE_SELECTION.getCode())
                 || questionTypeCode.equals(QuestionTypeEnum.PICTURE_MULTIPLE_SELECTION.getCode())
                 || questionTypeCode.equals(QuestionTypeEnum.SHORT_ANSWER.getCode())
-                || questionTypeCode.equals(QuestionTypeEnum.TIME_POINT.getCode())) {
+                || questionTypeCode.equals(QuestionTypeEnum.TIME_POINT.getCode())
+                || questionTypeCode.equals(QuestionTypeEnum.MIX_CHOICE.getCode())
+                || questionTypeCode.equals(QuestionTypeEnum.UPLOAD_PICTURE.getCode())
+                || questionTypeCode.equals(QuestionTypeEnum.MULTIMEDIA_UPLOAD.getCode())) {
             options = optionString.split("\\|\\|");
             if (optionFollowStr != null) {
                 optionFollow = optionFollowStr.split("\\|\\|");

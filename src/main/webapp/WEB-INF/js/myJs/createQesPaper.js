@@ -151,6 +151,10 @@ function getQesVOData(isDone, isTemplate) {
                     options.push(listItems);
                 });
                 break;
+            case '图片题':
+            case '多媒体上传':break;
+            case '混合多选题':
+                break;
             default:
         }
         questionData.questionDescription = $(this).find('.analysis_contx').val() || 0;

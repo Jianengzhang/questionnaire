@@ -6,6 +6,7 @@ package com.questionnaire.ssm.module.questionnaireManage.enums;
  * 与 createQuestionnaire 页面的 dataType 相关
  */
 public enum QuestionTypeEnum {
+
     UNKNOWN_TYPE("0", "未知题型", ""),
     SINGLE_CHOICE("1", "单选题", "||"),//单选题
     MULTIPLE_CHOICE("2", "多选题", "||"),//多选题
@@ -15,7 +16,13 @@ public enum QuestionTypeEnum {
     PICTURE_SINGLE_SELECTION("6", "图片单选题", "||"),//图片单选题
     PICTURE_MULTIPLE_SELECTION("7", "图片多选题", "||"),//图片多选题
     SHORT_ANSWER("8", "简答题", "||"),
-    TIME_POINT("9", "时间题", "||");
+    TIME_POINT("9", "时间题", "||"),
+    MIX_CHOICE("10","混合多选题","||"),
+    UPLOAD_PICTURE("11", "图片上传", "||"),
+    MULTIMEDIA_UPLOAD("12","多媒体上传","||");
+
+
+
 
     QuestionTypeEnum(String code, String questionType, String divideStr) {
         this.code = code;
