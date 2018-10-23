@@ -362,6 +362,17 @@ var exam = {
                 return;
             }
 
+            if ($qesType === '混合单选题'){
+                data = {
+                    type: parseInt($parentItems.attr('data-checktype')),
+                    name: $name,
+                    index: $parentItems.children('.form-group:last').index() + 1,
+                    items: [{value: '0', tid: $tid}]
+                };
+                $parentItems.prepend(template('ui_additem_content', data));
+                return;
+            }
+
             $tid++;
             data = {
                 type: parseInt($parentItems.attr('data-checktype')),

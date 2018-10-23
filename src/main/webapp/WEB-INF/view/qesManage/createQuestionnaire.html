@@ -57,8 +57,16 @@
                                         <i class="glyphicon glyphicon-pencil"></i>简答题</a>
                                 </li>
                                 <li data-uid="80" data-tempId="time_point_template">
-                                        <a href="javascript:;" data-checkType="80" data-questionType="时间题">
-                                            <i class="icon-time"></i>时间题</a>
+                                    <a href="javascript:;" data-checkType="80" data-questionType="时间题">
+                                        <i class="icon-time"></i>时间题</a>
+                                </li>
+                                <li data-uid="100" data-tempId="multimedia_upload_template">
+                                    <a href="javascript:;" data-checkType="100" data-questionType="图片上传">
+                                        <i class="icon-multipleChoice"></i>图片上传</a>
+                                </li>
+                                <li data-uid="110" data-tempId="multimedia_upload_template">
+                                    <a href="javascript:;" data-checkType="110" data-questionType="多媒体上传">
+                                        <i class="icon-multipleChoice"></i>多媒体上传</a>
                                 </li>
                                 <li data-uid="40" data-tempId="single_completion_template">
                                     <a href="javascript:;" data-checkType="40" data-questionType="单项填空题">
@@ -76,6 +84,13 @@
                                     <a href="javascript:;" data-checkType="70" data-questionType="图片多选题">
                                         <i class="icon-picsChoice"></i>图片多选题</a>
                                 </li>
+
+                                <li data-uid="90" data-tempId="mix_choice_template">
+                                    <a href="javascript:;" data-checkType="90" data-questionType="混合单选题">
+                                        <i class="icon-multipleChoice"></i>混合单选题</a>
+                                </li>
+
+
                             </ul>
                         </div>
                         <!--<div class="exam-item">-->
@@ -356,7 +371,7 @@
     {{each items as itemData i}}
     <div class="form-group">
         <label class="col-sm-1 control-label">
-            <input type="{{if type==10}}radio{{else if type==20}}checkbox{{/if}}"
+            <input type="{{if type==10}}radio{{else if type==20}}checkbox{{else if type==90}}radio{{/if}}"
                    name="{{name}}" value="{{itemData.value}}"/>
         </label>
         <div class="col-sm-10">
@@ -496,8 +511,8 @@
                     {{each items as itemData i}}
                     <div class="form-group">
                         <!--<label class="col-sm-1 control-label">-->
-                            <!--<input type="radio"-->
-                                   <!--name="{{name}}" value="{{itemData.value}}"/>-->
+                        <!--<input type="radio"-->
+                        <!--name="{{name}}" value="{{itemData.value}}"/>-->
                         <!--</label>-->
                         <div class="col-sm-offset-1 col-sm-10">
                             <input class="form-control" style="border: 1px double #fff;"
@@ -511,10 +526,10 @@
                 </div>
                 <div class="cq-items-ctrl">
                     <!--<a href="javascript:void(0);" class="ui-add-item-btn" data-tisp="添加选项">-->
-                        <!--<i class="icon-plus"></i>-->
+                    <!--<i class="icon-plus"></i>-->
                     <!--</a>-->
                     <!--<a href="javascript:void(0);" class="ui-remove-item-btn" data-tisp="移除选项">-->
-                        <!--<i class="icon-jian"></i>-->
+                    <!--<i class="icon-jian"></i>-->
                     <!--</a>-->
                     <a href="javascript:void(0);" class="ui-set-must-done" data-tisp="设为必做题">
                         <i class="icon-enshrine"></i>
@@ -581,12 +596,162 @@
     </li>
 </script>
 
+<!--混合单选题-->
+<script type="text/html" id="mix_choice_template">
+    <li class="ui-module items-questions">
+        <div class="theme-type">
+            <div class="module-menu">
+                <h4></h4>
+                <div class="module-ctrl">
+                    <a href="javascript:void(0);" class="ui-up-btn" data-tisp="上移"><i class="icon-up"></i></a>
+                    <a href="javascript:void(0);" class="ui-down-btn" data-tisp="下移"><i class="icon-down"></i></a>
+                    <a href="javascript:void(0);" class="ui-clone-btn" data-tisp="复制"><i class="icon-clone"></i></a>
+                    <a href="javascript:void(0);" class="ui-del-btn" data-tisp="删除"><i class="icon-del"></i></a>
+                </div>
+            </div>
+            <div class="ui-drag-area">
+                <div data-Tid="{{itmetid}}" data-questionType="{{questionType}}">
+                    <input class="form-control"
+                           style="font-size:16px;border: 1px double #e8e8e8;"
+                           onclick="editingTitleFunc(this);" placeholder="请输入混合单选题标题"/>
+                </div>
+            </div>
+            <div class="cq-items-content">
+                <div class="form-horizontal" data-checkType="{{type}}" data-nameStr="{{name}}">
+                    {{each items as itemData i}}
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">
+                            <input type="radio" name="{{name}}" value="{{itemData.value}}"/>
+                        </label>
+                        <div class="col-sm-4">
+                            <h5>其他</h5>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                <div class="cq-items-ctrl">
+                    <a href="javascript:void(0);" class="ui-add-item-btn" data-tisp="添加选项">
+                        <i class="icon-plus"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="ui-remove-item-btn" data-tisp="移除选项">
+                        <i class="icon-jian"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="ui-set-must-done" data-tisp="设为必做题">
+                        <i class="icon-enshrine"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="ui-add-answer-btn" data-tisp="添加问题说明">
+                        <i class="icon-assignment"></i>
+                    </a>
+                    <a href="javascript:void(0);" class="ui-add-logic" data-tisp="添加逻辑设置">
+                        <i class="icon-set"></i>
+                    </a>
+                </div>
+        </div>
+    </li>
+</script>
+<!--图片上传题-->
+<script type="text/html" id="multimedia_upload_template">
+    <li class="ui-module items-questions">
+        <div class="theme-type">
+            <div class="module-menu">
+                <h4></h4>
+                <div class="module-ctrl">
+                    <a href="javascript:void(0);" class="ui-up-btn" data-tisp="上移"><i class="icon-up"></i></a>
+                    <a href="javascript:void(0);" class="ui-down-btn" data-tisp="下移"><i class="icon-down"></i></a>
+                    <a href="javascript:void(0);" class="ui-clone-btn" data-tisp="复制"><i class="icon-clone"></i></a>
+                    <a href="javascript:void(0);" class="ui-del-btn" data-tisp="删除"><i class="icon-del"></i></a>
+                </div>
+            </div>
+            <div class="ui-drag-area">
+                <div data-Tid="{{itmetid}}" data-questionType="{{questionType}}">
+                    {{if type==100}}
+                    <input class="form-control"
+                           style="font-size:16px;border: 1px double #e8e8e8;"
+                           onclick="editingTitleFunc(this);" placeholder="请输入图片上传标题"/>
+                    {{else if type==110}}
+                    <input class="form-control"
+                           style="font-size:16px;border: 1px double #e8e8e8;"
+                           onclick="editingTitleFunc(this);" placeholder="请输入多媒体上传标题"/>
+
+                    {{/if}}
+                </div>
+            </div>
+            <div class="cq-items-content">
+                <div class="form-horizontal" data-tid="{{items[0].tid}}">
+                    {{if type==100}}
+                    <img width="200px" height="150px" th:width="200px" th:height="150px" src="../../img/upload.jpg"/>
+                    {{else if type==110}}
+                    <img width="200px" height="150px" th:width="200px" th:height="150px" src="../../img/upload.jpg"/>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="cq-items-ctrl">
+                <a href="javascript:void(0);" class="ui-set-must-done" data-tisp="设为必做题">
+                    <i class="icon-enshrine"></i>
+                </a>
+                <a href="javascript:void(0);" class="ui-add-answer-btn" data-tisp="添加问题说明">
+                    <i class="icon-assignment"></i>
+                </a>
+                <a href="javascript:void(0);" class="ui-add-logic" data-tisp="添加逻辑设置">
+                    <i class="icon-set"></i>
+                </a>
+            </div>
+        </div>
+        </div>
+    </li>
+</script>
+<!--&lt;!&ndash;多媒体上传&ndash;&gt;-->
+<!--<script type="text/html" id="multimedia_upload_template">-->
+    <!--<li class="ui-module items-questions">-->
+        <!--<div class="theme-type">-->
+            <!--<div class="module-menu">-->
+                <!--<h4></h4>-->
+                <!--<div class="module-ctrl">-->
+                    <!--<a href="javascript:void(0);" class="ui-up-btn" data-tisp="上移"><i class="icon-up"></i></a>-->
+                    <!--<a href="javascript:void(0);" class="ui-down-btn" data-tisp="下移"><i class="icon-down"></i></a>-->
+                    <!--<a href="javascript:void(0);" class="ui-clone-btn" data-tisp="复制"><i class="icon-clone"></i></a>-->
+                    <!--<a href="javascript:void(0);" class="ui-del-btn" data-tisp="删除"><i class="icon-del"></i></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="ui-drag-area">-->
+                <!--<div data-Tid="{{itmetid}}" data-questionType="{{questionType}}">-->
+                    <!--<input class="form-control"-->
+                           <!--style="font-size:16px;border: 1px double #e8e8e8;"-->
+                           <!--onclick="editingTitleFunc(this);" placeholder="请输入多媒体上传标题"/>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="cq-items-content">-->
+                <!--<div class="form-horizontal row" data-checkType="{{type}}" data-nameStr="{{name}}">-->
+                    <!--<div class="form-group col-sm-3">-->
+                        <!--<div class="col-sm-12">-->
+                            <!--<form action="#" id="{{itmetid} }" class="dropzone" data-serv-url=""></form>-->
+                            <!--<input style="margin: 5% 45%; vertical-align: middle!important;border: none!important;"-->
+                                   <!--name="{{name}}" type="checkbox"/>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="cq-items-ctrl">-->
+                    <!--&lt;!&ndash;/*添加必做题按钮*/&ndash;&gt;-->
+                    <!--<a href="javascript:void(0);" class="ui-set-must-done" data-tisp="设为必做题">-->
+                        <!--<i class="icon-enshrine"></i>-->
+                    <!--</a>-->
+                    <!--<a href="javascript:void(0);" class="ui-add-answer-btn" data-tisp="添加问题说明">-->
+                        <!--<i class="icon-assignment"></i>-->
+                    <!--</a>-->
+                    <!--<a href="javascript:void(0);" class="ui-add-logic" data-tisp="添加逻辑设置">-->
+                        <!--<i class="icon-set"></i>-->
+                    <!--</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</li>-->
+<!--</script>-->
+
 <script type="text/html" id="drag_T_edit">
     <div class="cq-into-edit">
         <div class="add-edit cq-edit-title" contenteditable="true">{{title}}</div>
     </div>
 </script>
-
 <script type="text/html" id="T_edit_plugins">
     <div class="edit-plug-box">
         <a href="javascript:void(0);"><i class="icon-picChoice"></i></a>
