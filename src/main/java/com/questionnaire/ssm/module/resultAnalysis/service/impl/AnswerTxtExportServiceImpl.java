@@ -65,6 +65,7 @@ public class AnswerTxtExportServiceImpl implements AnswerTxtExportService {
             @Override
             public int compare(ExportTxtDataDTO.KeySetNode o1, ExportTxtDataDTO.KeySetNode o2) {
                 return (int) (o1.getQesID()-o2.getQesID());
+
             }
         });
         iterator=list.iterator();
