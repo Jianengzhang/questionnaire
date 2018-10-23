@@ -58,6 +58,7 @@
                 <div class="panel-default" th:case="'单选题'">
                     <div class="panel-heading">
                         <div class="panel-title">
+                            
                             第 <span th:text="${iterStat.count}">[题号]</span> 题：
                             <span th:text="${curQes.questionContext}"></span>
                             (
@@ -260,7 +261,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <img src="../../img/upload.jpg"/>
+                            <img width="200px" height="150px" th:width="200px" th:height="150px" src="../../img/upload.jpg"/>
                         </div>
                     </div>
                 </div>
@@ -278,11 +279,32 @@
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <img src="../../img/upload.jpg"/>
+                            <img width="200px" height="150px" th:width="200px" th:height="150px" src="../../img/upload.jpg"/>
                         </div>
                     </div>
                 </div>
                 <!--混合多选题模板-->
+                <div class="panel-default" th:case="'混合单选题'">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            第 <span th:text="${iterStat.count}">[题号]</span> 题：
+                            <span th:text="${curQes.questionContext}"></span>
+                            (
+                            <span th:text="${curQes.questionType}">题型</span>
+                            <span th:if="${#bools.isTrue(curQes.must)}" style="color: red;">*</span>
+                            )
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-inline">
+                                <div class="form-group" th:if="${#lists.size(curQes.options)>0}"
+                                    th:each="curQesOption: ${curQes.options}">
+                                    <input class="form-control" type="radio" th:name="${iterStat.index}"/>
+                                    <label th:text="${curQesOption.option}">选项</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

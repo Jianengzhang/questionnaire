@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-                <div id="show" hidden>
+                <div id="show">
                     <div class="panel-body">
                         <div class="btn-group col-sm-offset-5">
                             <button id="submitDataBtn" class="btn btn-lg btn-success">确认</button>
@@ -88,15 +88,16 @@
 
 <!-- 选择模板 -->
 <script>
+    // 选择模板
     $(function () {
         $.ajax({
             type: "get",
             // 后端路径
-            //url: 
+            url: /questionnaireManage/listAllTemplate ,
             dataType: "json",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    var $option = '<option>' + data[i] + '</option>';
+                    var $option = '<option value= ' + data[i].questionnaireId + '>' + data[i].questionnaireTitle + '</option>';
                     $("#templateShow").append($option);
                 }
             },
@@ -107,29 +108,7 @@
     });
 </script>
 
-<!-- 加载题目页面 -->
-<script>
-    $('#templateShowDefinite').on('click',function(){
-        var template = $('#templateShow option:selected').val();
-        getQuestionsList(template);
-    })
 
-    function getQuestionsList(template)
-    {
-        $.ajax({
-            type:"get",
-            //url:未填
-            data:{
-                'template':template
-            },
-            dataType:"json",
-            success:
-                function(data){
-                    
-                }
-        })
-    }
-</script>
 
 <script>
     /*提交数据*/
