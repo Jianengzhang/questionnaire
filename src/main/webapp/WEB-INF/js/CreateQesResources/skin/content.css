@@ -162,13 +162,24 @@ a.cotrlBtn.active {
 }
 
 .exam-item-title {
-    line-height: 30px;
+    line-height: normal;
     height: 30px;
-    padding: 5px 0 5px 0;
+    padding: 3px 0 5px 0;
     text-align: center;
     font-size: 16px;
     border-bottom: 1px solid #eaedf1;
     color: #666;
+    cursor: pointer;
+}
+
+.exam-item-title1 {
+    line-height: normal;
+    height: 30px;
+    padding: 3px 0 5px 0;
+    text-align: center;
+    font-size: 16px;
+    border-bottom: 1px solid #eaedf1;
+    color: #09c;
     cursor: pointer;
 }
 

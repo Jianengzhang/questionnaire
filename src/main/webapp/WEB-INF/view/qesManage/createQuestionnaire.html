@@ -7,14 +7,21 @@
     <meta name="keywords" content="">
     <meta name="description" content="问卷调查系统-创建问卷页面">
     <meta name="robots" content="noindex,nofollow">
-    <link rel="shortcut icon" href="/WEB-INF/img/favicon.ico"
+    <link rel="shortcut icon" href="../../img/favicon.ico"
           th:href="@{/img/favicon.ico}"/>
-    <script type="text/javascript" src="/WEB-INF/js/CreateQesResources/script/jquery.min.js"
+    <script type="text/javascript" src="../../js/CreateQesResources/script/jquery.min.js"
             th:src="@{/js/CreateQesResources/script/jquery.min.js}"></script>
-    <script type="text/javascript" src="/WEB-INF/js/CreateQesResources/script/configBase.js"
+    <script type="text/javascript" src="../../js/CreateQesResources/script/configBase.js"
             th:src="@{/js/CreateQesResources/script/configBase.js}"></script>
-    <script type="text/javascript" src="/WEB-INF/js/CreateQesResources/script/exam/exam.js"
+    <script type="text/javascript" src="../../js/CreateQesResources/script/exam/exam.js"
             th:src="@{/js/CreateQesResources/script/exam/exam.js}"></script>
+
+    <script type="text/javascript" src="../../js/plugins/layer/layer.min.js"
+            th:src="@{/js/plugins/layer/layer.min.js}"></script>
+
+
+    <link>        
+    
 </head>
 
 <body>
@@ -32,6 +39,9 @@
                 <div class="create-questions-content">
                     <div class="exam-nav">
                         <div class="exam-item">
+
+                            <h4 class="exam-item-title1">问题导入&nbsp;&nbsp;&nbsp;&nbsp;</h4>   
+
                             <h4 class="exam-item-title">所有题型<i class="icon-expand"></i></h4>
                             <ul class="exam-nav-list" id="ui_sortable_exam">
                                 <li data-uid="10" data-tempId="choice_template">
@@ -45,6 +55,10 @@
                                 <li data-uid="30" data-tempId="single_completion_template">
                                     <a href="javascript:;" data-checkType="30" data-questionType="简答题">
                                         <i class="glyphicon glyphicon-pencil"></i>简答题</a>
+                                </li>
+                                <li data-uid="80" data-tempId="time_point_template">
+                                        <a href="javascript:;" data-checkType="80" data-questionType="时间题">
+                                            <i class="icon-time"></i>时间题</a>
                                 </li>
                                 <li data-uid="40" data-tempId="single_completion_template">
                                     <a href="javascript:;" data-checkType="40" data-questionType="单项填空题">
@@ -61,10 +75,6 @@
                                 <li data-uid="70" data-tempId="picture_choice_template">
                                     <a href="javascript:;" data-checkType="70" data-questionType="图片多选题">
                                         <i class="icon-picsChoice"></i>图片多选题</a>
-                                </li>
-                                <li data-uid="80" data-tempId="time_point_template">
-                                    <a href="javascript:;" data-checkType="80" data-questionType="时间题">
-                                        <i class="icon-time"></i> 时间题</a>
                                 </li>
                             </ul>
                         </div>
@@ -136,6 +146,23 @@
         </div>
     </div>
 </div>
+
+<!-- 问题导入 -->
+<!-- 测试中 -->
+<script>
+    $('.exam-item-title1').on('click',function(){
+        layer.open({
+        type:2,
+        title:"问题模板导入",
+        maxmin:true,
+        content:'../qesManage/questionInport.html',
+        area: ['80%', '90%'],
+        resize: true
+        })
+    })
+
+    
+</script>
 
 <!--添加逻辑视图模板-->
 <script type="text/html" id="add_logic_template">
@@ -571,9 +598,9 @@
     <textarea class="exam-textarea analysis_contx" placeholder="请在此填写问题说明"></textarea>
 </script>
 
-<script src="/WEB-INF/js/myJs/responseAnalyze.js" type="text/javascript"
+<script src="../../js/myJs/responseAnalyze.js" type="text/javascript"
         th:src="@{/js/myJs/responseAnalyze.js}"></script>
-<script src="/WEB-INF/js/myJs/createQesPaper.js"
+<script src="../../js/myJs/createQesPaper.js"
         th:src="@{/js/myJs/createQesPaper.js}"></script>
 <!--主体框架结束-->
 </body>

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>单位管理-编辑</title>
+    <title>问题模板导入</title>
     <link rel="shortcut icon" href="../../img/favicon.ico"/>
     <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../js/plugins/bootstrap-select/css/bootstrap-select.min.css">
@@ -12,22 +12,34 @@
         .col-xs-2 {
             text-align: center;
         }
-
         .col-xs-4 {
             text-align: center;
         }
-
         .container {
             padding-right: 5px;
             padding-left: 5px;
             margin-right: auto;
             margin-left: auto
         }
+        .headline{
+            font-size: 14px;
+            text-align: center
+        }
+        .templateShow{
+            top: 4px;
+            height: 30px;
+            width: 400px
+        }
+        #templateShowDefinite{
+            position: relative;
+            top: -3px;
+        }
+
     </style>
 </head>
 
 <body>
-<div class="container">
+<div class="container" >
     <div class="panel">
         <div class="panel-body">
             <div class="form-horizontal">
@@ -35,72 +47,33 @@
                 <div class="form-group">
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="control-label col-xs-2">单位名称：</div>
-                            <div class="col-xs-9">
-                                <!-- 后端路径未填写,id修改过 -->
-                                <input id='unitname' class="form-control"  placeholder="请填写单位名称"/>
+                            <div class="control-label col-xs-3"><p class="headline">选择导入的模板：</p></div>
+                            <div class="col-xs-6">
+                                <select id="templateShow" class="templateShow">
+                                    <option value="default" selected="selected"></option>
+                                    <option value="test2">包虫病流行情况调查包虫病患者个案调查表包虫病流行情况</option>
+                                </select>
+                            </div>
+                            <div class="col-xs-2 col-xs-offset-1">
+                                <button id="templateShowDefinite" class="btn btn-md btn-success">确定</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <!-- 后端路径未填写，id已修改 -->
-                            <div class="control-label col-xs-2">单位级别：</div>
-                            <div class="col-xs-9">
-                                <input id="level" class="form-control" placeholder="请填写单位级别"/>
-                            </div>
+                <div id="show" hidden>
+                    <div class="panel-body">
+                        <div class="btn-group col-sm-offset-5">
+                            <button id="submitDataBtn" class="btn btn-lg btn-success">确认</button>
+                            <button id="cancelBtn" class="btn btn-lg btn-warning">取消</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <!-- 后端路径未填写，id已修改 -->
-                            <div class="control-label col-xs-2">所在省份：</div>
-                            <div class="col-xs-9">
-                                <input id="province" class="form-control" placeholder="请填写所在省份"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <!-- 后端路径未填写，id已修改 -->
-                            <div class="control-label col-xs-2">所在城市：</div>
-                            <div class="col-xs-9">
-                                <input id="city" class="form-control" placeholder="请填写所在城市"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <!-- 后端路径未填写，id已修改 -->
-                            <div class="control-label col-xs-2">单位地址：</div>
-                            <div class="col-xs-9">
-                                <input id='address' class="form-control" placeholder="请填写单位地址"/> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="btn-group col-sm-offset-5">
-                    <button id="submitDataBtn" class="btn btn-lg btn-success">确认</button>
-                    <button id="cancelBtn" class="btn btn-lg btn-warning">取消</button>
-                </div>
             </div>
         </div>
-
     </div>
-</div>
 </div>
 
 <script src="../../js/jquery.min.js"></script>
@@ -112,12 +85,59 @@
 <script src="../../js/myJs/responseAnalyze.js"></script>
 
 
+
+<!-- 选择模板 -->
+<script>
+    $(function () {
+        $.ajax({
+            type: "get",
+            // 后端路径
+            //url: 
+            dataType: "json",
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    var $option = '<option>' + data[i] + '</option>';
+                    $("#templateShow").append($option);
+                }
+            },
+            error: function (data) {
+                console.error("出错了，返回的data：" + data);
+            }
+        });
+    });
+</script>
+
+<!-- 加载题目页面 -->
+<script>
+    $('#templateShowDefinite').on('click',function(){
+        var template = $('#templateShow option:selected').val();
+        getQuestionsList(template);
+    })
+
+    function getQuestionsList(template)
+    {
+        $.ajax({
+            type:"get",
+            //url:未填
+            data:{
+                'template':template
+            },
+            dataType:"json",
+            success:
+                function(data){
+                    
+                }
+        })
+    }
+</script>
+
 <script>
     /*提交数据*/
     $('#submitDataBtn').on('click',function(){
         var newUnitInfo = {};
         //获取单位信息
-        var unitName = $('#unitname').val();
+        var unitName = $('#unitName').val();
+        var unitCode = $('#unitCode').val();
         var unitLevel = $('#level').val();
         var unitProvince = $('#province').val();
         var unitCity = $('#city').val();
@@ -129,7 +149,7 @@
                 layer.msg("单位名称不得为空!", function () {
                 });
             });
-             return;
+            return;
         }
         if(unitName == 'NULL')
         {
@@ -138,21 +158,19 @@
                 layer.msg("单位名称不得为空!", function () {
                 });
             });
-             return;
+            return;
         }
         newUnitInfo.unitName = unitName;
+        newUnitInfo.unitCode = unitCode
         newUnitInfo.unitLevel = unitLevel;
         newUnitInfo.unitProvince = unitProvince;
         newUnitInfo.unitCity = unitCity;
-        newUnitInfo.unitAddress = unitAddress;
-
-        //地址需要后台来写
-        var updateUnitUrl = '';
-
+        newUnitInfo.address = unitAddress;
+        var AddUnitUrl = '/userManage/insertUnit';
         layui.use('layer', function () {
             var layer = layui.layer;
             $.ajax({
-                url: updateUnitUrl,
+                url: AddUnitUrl,
                 contentType: "application/json;charset=utf-8",
                 type: 'post',
                 dataType: 'json',
@@ -176,14 +194,11 @@
                 }
             });
         });
-
     })
-
     /*取消按钮*/
     $('#cancelBtn').on('click', function () {
         layui.use('layer', closeLayer());
     });
-
     /**
      * 关闭 layer 层
      */
