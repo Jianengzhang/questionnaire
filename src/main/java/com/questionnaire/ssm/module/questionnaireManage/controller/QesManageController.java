@@ -6,10 +6,10 @@ import com.questionnaire.ssm.module.global.pojo.ResponsePkt;
 import com.questionnaire.ssm.module.global.service.PaginationDisplayService;
 import com.questionnaire.ssm.module.global.util.ResultUtil;
 import com.questionnaire.ssm.module.global.util.UserValidationUtil;
-import com.questionnaire.ssm.module.questionnaireManage.pojo.CreateQesVO;
-import com.questionnaire.ssm.module.questionnaireManage.pojo.MyQesVO;
-import com.questionnaire.ssm.module.questionnaireManage.pojo.PreOrNextQes;
-import com.questionnaire.ssm.module.questionnaireManage.pojo.TempDelQesPaperVO;
+import com.questionnaire.ssm.module.qesTemplateManage.pojo.PrivateTemplateInfoVO;
+import com.questionnaire.ssm.module.qesTemplateManage.pojo.PublicTemplateInfoVO;
+import com.questionnaire.ssm.module.qesTemplateManage.service.QesTemplateManageService;
+import com.questionnaire.ssm.module.questionnaireManage.pojo.*;
 import com.questionnaire.ssm.module.questionnaireManage.service.QesManageService;
 import com.questionnaire.ssm.module.questionnaireManage.util.OperateQuestionnaireUtil;
 import org.slf4j.Logger;
@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -96,6 +97,61 @@ public class QesManageController extends IsOutOfIndex {
         preOrNextQes = new PreOrNextQes(qesIds);
         return resultVO;
     }
+
+    /**
+     * 获取所有模板
+     *
+     * @param
+     * @return
+     * @throws Exception
+     */
+    @GetMapping(value = "/listAllTemplate")
+    @ResponseBody
+    public List<MyTemVO> listAllTemplate() throws Exception {
+        String userTel = UserValidationUtil.getUserTel(logger);
+        List<PrivateTemplateInfoVO> privateTemplateInfoVO = qesTemplateManageService.listPrivateTemplate(userTel);
+        List<PublicTemplateInfoVO> publicTemplateInfoVO = qesTemplateManageService.listPublicTemplate();
+        List<MyTemVO> myTemVO = new ArrayList<>();
+
+        for (PrivateTemplateInfoVO p : privateTemplateInfoVO) {
+            MyTemVO temVO = new MyTemVO();
+            temVO.setQuestionnaireDescription(p.getQuestionnaireDescription());
+            temVO.setQuestionnaireId(p.getQuestionnaireId());
+            temVO.setQuestionnaireSubtitle(p.getQuestionnaireSubtitle());
+            temVO.setQuestionnaireTitle(p.getQuestionnaireTitle());
+            myTemVO.add(temVO);
+        }
+        for (int i = 0; i < publicTemplateInfoVO.size(); i++) {
+            MyTemVO temVO = new MyTemVO();
+            temVO.setQuestionnaireDescription(publicTemplateInfoVO.get(i).getQuestionnaireDescription());
+            temVO.setQuestionnaireId(publicTemplateInfoVO.get(i).getQuestionnaireId());
+            temVO.setQuestionnaireSubtitle(publicTemplateInfoVO.get(i).getQuestionnaireSubtitle());
+            temVO.setQuestionnaireTitle(publicTemplateInfoVO.get(i).getQuestionnaireTitle());
+            myTemVO.add(temVO);
+        }
+        return myTemVO;
+    }
+
+    /**
+     * 获取所选模板
+     *
+     * @param curQesId
+     * @return
+     * @throws Exception
+     */
+    @PostMapping(value = "/displayTemplate/{questionnaireId}")
+    @ResponseBody
+    public DisplayQesVO displayTemplate(@PathVariable("questionnaireId") long curQesId) throws Exception {
+        DisplayQesVO displayQesVO = qesManageService.getQuestionnaireById(curQesId);
+
+        return displayQesVO;
+    }
+
+    @GetMapping(value = "/questionImport")
+    public ModelAndView questionImport() {
+        return new ModelAndView("qesManage/questionImport");
+    }
+
 
     /**
      * 预览，展示问卷
@@ -265,12 +321,15 @@ public class QesManageController extends IsOutOfIndex {
     private PreOrNextQes preOrNextQes;
     private QesManageService qesManageService;
     private PaginationDisplayService paginationDisplayService;
+    private QesTemplateManageService qesTemplateManageService;
 
     @Autowired
     public QesManageController(QesManageService qesManageService,
-                               PaginationDisplayService paginationDisplayService) {
+                               PaginationDisplayService paginationDisplayService,
+                               QesTemplateManageService qesTemplateManageService) {
         this.preOrNextQes = null;
         this.qesManageService = qesManageService;
         this.paginationDisplayService = paginationDisplayService;
+        this.qesTemplateManageService = qesTemplateManageService;
     }
 }

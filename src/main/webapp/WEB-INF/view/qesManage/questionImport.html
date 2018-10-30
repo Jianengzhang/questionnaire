@@ -12,25 +12,30 @@
         .col-xs-2 {
             text-align: center;
         }
+
         .col-xs-4 {
             text-align: center;
         }
+
         .container {
             padding-right: 5px;
             padding-left: 5px;
             margin-right: auto;
             margin-left: auto
         }
-        .headline{
+
+        .headline {
             font-size: 14px;
             text-align: center
         }
-        .templateShow{
+
+        .templateShow {
             top: 4px;
             height: 30px;
             width: 400px
         }
-        #templateShowDefinite{
+
+        #templateShowDefinite {
             position: relative;
             top: -3px;
         }
@@ -39,7 +44,7 @@
 </head>
 
 <body>
-<div class="container" >
+<div class="container">
     <div class="panel">
         <div class="panel-body">
             <div class="form-horizontal">
@@ -51,7 +56,6 @@
                             <div class="col-xs-6">
                                 <select id="templateShow" class="templateShow">
                                     <option value="default" selected="selected"></option>
-                                    <option value="test2">包虫病流行情况调查包虫病患者个案调查表包虫病流行情况</option>
                                 </select>
                             </div>
                             <div class="col-xs-2 col-xs-offset-1">
@@ -61,7 +65,9 @@
                     </div>
                 </div>
 
-                <div id="show">
+                <div id="tabShow" class="panel-body"></div>
+
+                <div>
                     <div class="panel-body">
                         <div class="btn-group col-sm-offset-5">
                             <button id="submitDataBtn" class="btn btn-lg btn-success">确认</button>
@@ -85,7 +91,6 @@
 <script src="../../js/myJs/responseAnalyze.js"></script>
 
 
-
 <!-- 选择模板 -->
 <script>
     // 选择模板
@@ -93,7 +98,7 @@
         $.ajax({
             type: "get",
             // 后端路径
-            url: /questionnaireManage/listAllTemplate ,
+            url: '/questionnaireManage/listAllTemplate',
             dataType: "json",
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
@@ -109,10 +114,50 @@
 </script>
 
 
+<!-- 加载题目页面 -->
+<script>
+    $('#templateShowDefinite').on('click', function () {
+        var questionnaireId = $('#templateShow option:selected').val();
+        getQuestionsList(questionnaireId);
+    })
+
+    function getQuestionsList(questionnaireId) {
+        $.ajax({
+            type: "post",
+            url: '/questionnaireManage/displayTemplate/' + questionnaireId,
+            data: {
+                'questionnaireId': questionnaireId
+            },
+            dataType: "json",
+            success:
+                function (data) {
+                    console.log(questionnaireId);
+                    console.log('successful');
+                    for (var i = 0; i < data.questions.length; i++) {
+                        switch (data.questions[i].questionType) {
+                            case '单项填空题' :
+                                $("#tabShow").append('<div class="panel-default" id="panel-default' + i + '"></div>');
+                                $("#panel-default"+ i).append("<div class='panel-heading' id='panel-heading" + i + "'></div>");
+                                $("#panel-heading"+i).append("<div class='panel-title' id='panel-title" + i + "'></div>");
+                                $("#panel-title"+i).append("<input type='checkbox' val='" + data.questions[i].questionId + "'>" );
+                                $("#panel-title"+i).append("第 <span>"+ i+1 + "</span> 题：");
+                                $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
+                                $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
+                                $("#panel-body"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
+                                $("#panel-group"+i).append("<input class='form-control' disabled/>");
+                                break;
+
+                        }
+                    }
+
+                }
+        })
+    }
+</script>
 
 <script>
     /*提交数据*/
-    $('#submitDataBtn').on('click',function(){
+    $('#submitDataBtn').on('click', function () {
         var newUnitInfo = {};
         //获取单位信息
         var unitName = $('#unitName').val();
@@ -121,8 +166,7 @@
         var unitProvince = $('#province').val();
         var unitCity = $('#city').val();
         var unitAddress = $('#address').val();
-        if(unitName == 'NULL')
-        {
+        if (unitName == 'NULL') {
             layui.use('layer', function () {
                 var layer = layui.layer;
                 layer.msg("单位名称不得为空!", function () {
@@ -130,8 +174,7 @@
             });
             return;
         }
-        if(unitName == 'NULL')
-        {
+        if (unitName == 'NULL') {
             layui.use('layer', function () {
                 var layer = layui.layer;
                 layer.msg("单位名称不得为空!", function () {
@@ -178,6 +221,7 @@
     $('#cancelBtn').on('click', function () {
         layui.use('layer', closeLayer());
     });
+
     /**
      * 关闭 layer 层
      */
