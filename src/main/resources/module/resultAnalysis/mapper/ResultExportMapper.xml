@@ -12,6 +12,7 @@
         SELECT
             paper.question_id AS questionId,
             q.question_context AS questionContext,
+            MQQ.question_order AS  questionOrder,
             paper.answer_paper_id AS answerPaperId,
             paper.answer_string AS answerStr
         FROM
@@ -29,8 +30,11 @@
                 AND ap.questionnaire_id = #{qesID}
             ) AS paper
         INNER JOIN question AS q
+        JOIN mapping_questionnaire_question AS MQQ
         WHERE
             q.question_id = paper.question_id
+        AND MQQ.question_id = paper.question_id
+        AND MQQ.questionnaire_id = #{qesID}
         AND q.question_type IN
         <foreach collection="exceptTypeList" open="(" separator="," close=")" item="item">
             #{item}

@@ -64,7 +64,7 @@ public class AnswerTxtExportServiceImpl implements AnswerTxtExportService {
         Collections.sort(list, new Comparator<ExportTxtDataDTO.KeySetNode>() {
             @Override
             public int compare(ExportTxtDataDTO.KeySetNode o1, ExportTxtDataDTO.KeySetNode o2) {
-                return (int) (o1.getQesID()-o2.getQesID());
+                return (o1.getQesOrder()-o2.getQesOrder());
 
             }
         });
@@ -74,7 +74,7 @@ public class AnswerTxtExportServiceImpl implements AnswerTxtExportService {
         for (int sheetIndex = 0; sheetIndex < sheetNum; sheetIndex++) {
             while (iterator.hasNext()) {
                 curKeyNode = iterator.next();
-                curSheet = wb.createSheet("问题编号-" + curKeyNode.getQesID().toString());
+                curSheet = wb.createSheet("问题编号-" + (new Integer((curKeyNode.getQesOrder()+1)).toString()));
                 curValueList = sheetDataMap.get(curKeyNode);
                 Row firstRow = curSheet.createRow(0);
                 firstRow.createCell(0).setCellValue("问题：");
