@@ -11,6 +11,11 @@ public class CONSTANT {
 //    public final static String UPLOAD_PICTURE_QUESTION ="C:\\Users\\Gaidar\\Documents\\Workplace\\questionnaire_files\\question-picture";
 //    public final static String UPLOAD_PICTURE_QUESTION = "F:\\创新实践\\uploadFiles\\question-picture";
     public final static String UPLOAD_PICTURE_QUESTION = "C:\\Program Files\\Apache Software Foundation\\questionnaire_files\\question-picture";
+    /*答卷中图片上传*/
+    public final static String UPLOAD_PICTURE_ANSWER = "C:\\Program Files\\Apache Software Foundation\\questionnaire_files\\answer-picture";
+    /*答卷中视频上传*/
+    public final static String UPLOAD_MULTIMEDIA_ANSWER = "C:\\Program Files\\Apache Software Foundation\\questionnaire_files\\answer-video";
+
     /*上传文件路径*/
 //    private final static String UPLOAD_FILE_PATH = "C:\\Users\\Gaidar\\Documents\\Workplace\\questionnaire_files\\temp_excels";
 //    private final static String UPLOAD_FILE_PATH = "F:\\创新实践\\uploadFiles\\excels";

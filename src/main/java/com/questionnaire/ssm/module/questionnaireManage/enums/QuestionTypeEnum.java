@@ -17,12 +17,10 @@ public enum QuestionTypeEnum {
     PICTURE_MULTIPLE_SELECTION("7", "图片多选题", "||"),//图片多选题
     SHORT_ANSWER("8", "简答题", "||"),
     TIME_POINT("9", "时间题", "||"),
-    MIX_CHOICE("10","混合多选题","||"),
+    MIX_CHOICE("10","混合单选题","||"),
     UPLOAD_PICTURE("11", "图片上传", "||"),
     MULTIMEDIA_UPLOAD("12","多媒体上传","||");
-
-
-
+    
 
     QuestionTypeEnum(String code, String questionType, String divideStr) {
         this.code = code;

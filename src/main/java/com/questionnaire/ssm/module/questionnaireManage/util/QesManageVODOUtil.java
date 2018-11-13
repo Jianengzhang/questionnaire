@@ -6,10 +6,12 @@ import com.questionnaire.ssm.module.generated.pojo.Questionnaire;
 import com.questionnaire.ssm.module.global.constant.CONSTANT;
 import com.questionnaire.ssm.module.global.enums.CodeForVOEnum;
 import com.questionnaire.ssm.module.global.exception.UserValidaException;
+import com.questionnaire.ssm.module.global.util.CheckPicUtil;
 import com.questionnaire.ssm.module.global.util.UserValidationUtil;
 import com.questionnaire.ssm.module.questionnaireManage.enums.QuestionTypeEnum;
 import com.questionnaire.ssm.module.questionnaireManage.pojo.*;
 import com.questionnaire.ssm.module.researchManage.pojo.AnswerDetailVO;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -155,11 +157,21 @@ public class QesManageVODOUtil {
      * @throws Exception
      */
     public static AnswerDetail toAnswerDetailDO(AnswerDetailVO answerDetailVO) throws Exception {
+        String userTel = UserValidationUtil.getUserTel(logger);
         AnswerDetail answerDetail = new AnswerDetail();
         answerDetail.setQuestionId(answerDetailVO.getQuestionId());
         //获取汉字形式文本的数据库表示值
         String questionCode = parse2DOQuestionType(answerDetailVO.getQuestionType());
         if (answerDetailVO.getAnswer().size() > 0) {
+            if (QuestionTypeEnum.MULTIMEDIA_UPLOAD.getCode().equals(questionCode)) {
+                //StringUtils.substringAfterLast()
+                String separator = "\\";
+                String str = answerDetail.getAnswerString();
+                int pos = str.lastIndexOf(separator);
+                String res = pos != -1 && pos != str.length() - separator.length() ?
+                        str.substring(pos + separator.length()) : str;
+                answerDetail.setAnswerString(userTel + "\\" + CheckPicUtil.getTodayFolder() + "\\" + res);
+            }
             answerDetail.setAnswerString(toAnswerString(answerDetailVO.getAnswer(), questionCode));
         } else {
             //该题用户未作答，默认设置为‘未回答’
@@ -204,13 +216,13 @@ public class QesManageVODOUtil {
         if (QuestionTypeEnum.TIME_POINT.getCode().equals(typeCode)) {
             return QuestionTypeEnum.TIME_POINT.getQuestionType();
         }
-        if (QuestionTypeEnum.MIX_CHOICE.getCode().equals(typeCode)){
+        if (QuestionTypeEnum.MIX_CHOICE.getCode().equals(typeCode)) {
             return QuestionTypeEnum.MIX_CHOICE.getQuestionType();
         }
-        if (QuestionTypeEnum.UPLOAD_PICTURE.getCode().equals(typeCode)){
+        if (QuestionTypeEnum.UPLOAD_PICTURE.getCode().equals(typeCode)) {
             return QuestionTypeEnum.UPLOAD_PICTURE.getQuestionType();
         }
-        if (QuestionTypeEnum.MULTIMEDIA_UPLOAD.getCode().equals(typeCode)){
+        if (QuestionTypeEnum.MULTIMEDIA_UPLOAD.getCode().equals(typeCode)) {
             return QuestionTypeEnum.MULTIMEDIA_UPLOAD.getQuestionType();
         }
         return QuestionTypeEnum.UNKNOWN_TYPE.getQuestionType();
@@ -323,7 +335,12 @@ public class QesManageVODOUtil {
                         || questionTypeCode.equals(QuestionTypeEnum.MULTI_LINE_BLANK.getCode())
                         || questionTypeCode.equals(QuestionTypeEnum.DROP_SELECTION.getCode())
                         || questionTypeCode.equals(QuestionTypeEnum.PICTURE_SINGLE_SELECTION.getCode())
-                        || questionTypeCode.equals(QuestionTypeEnum.PICTURE_MULTIPLE_SELECTION.getCode())) {
+                        || questionTypeCode.equals(QuestionTypeEnum.PICTURE_MULTIPLE_SELECTION.getCode())
+                        || questionTypeCode.equals(QuestionTypeEnum.SHORT_ANSWER.getCode())
+                        || questionTypeCode.equals(QuestionTypeEnum.TIME_POINT.getCode())
+                        || questionTypeCode.equals(QuestionTypeEnum.MIX_CHOICE.getCode())
+                        || questionTypeCode.equals(QuestionTypeEnum.UPLOAD_PICTURE.getCode())
+                        || questionTypeCode.equals(QuestionTypeEnum.MULTIMEDIA_UPLOAD.getCode())) {
                     optionStrBuilder.append(QuestionTypeEnum.SINGLE_CHOICE.getDivideStr());
                 }
             }
@@ -353,7 +370,11 @@ public class QesManageVODOUtil {
                         || questionTypeCode.equals(QuestionTypeEnum.DROP_SELECTION.getCode())
                         || questionTypeCode.equals(QuestionTypeEnum.PICTURE_SINGLE_SELECTION.getCode())
                         || questionTypeCode.equals(QuestionTypeEnum.PICTURE_MULTIPLE_SELECTION.getCode())
-                        || questionTypeCode.equals(QuestionTypeEnum.TIME_POINT.getCode())) {
+                        || questionTypeCode.equals(QuestionTypeEnum.SHORT_ANSWER.getCode())
+                        || questionTypeCode.equals(QuestionTypeEnum.TIME_POINT.getCode())
+                        || questionTypeCode.equals(QuestionTypeEnum.MIX_CHOICE.getCode())
+                        || questionTypeCode.equals(QuestionTypeEnum.UPLOAD_PICTURE.getCode())
+                        || questionTypeCode.equals(QuestionTypeEnum.MULTIMEDIA_UPLOAD.getCode())) {
                     optionStrBuilder.append(QuestionTypeEnum.SINGLE_CHOICE.getDivideStr());
                 }
             }

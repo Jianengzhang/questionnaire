@@ -135,7 +135,7 @@
 <script>
     $('#templateShowDefinite').on('click', function () {
         var questionnaireId = $('#templateShow option:selected').val();
-        $("tabShow").empty();
+        $("#tabShow").empty();
         getQuestionsList(questionnaireId);
     })
 
@@ -151,6 +151,7 @@
                 function (data) {
                     console.log(questionnaireId);
                     console.log('successful');
+                    console.log(data);
                     for (var i = 0 ; i < data.questions.length; i++) {
                         var k = i + 1;
                         switch (data.questions[i].questionType) {
@@ -164,11 +165,11 @@
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
                                 $("#panel-body" +i).append("<div class='form-inline' id='form-inline" + i + "'></div>");
-                                $("#panel-inline"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
+                                $("#form-inline"+i).append("<div class='form-group' id='form-group" + i + "'></div>");
                                 for(var j = 0;j< data.questions[i].options.length; j++)
                                 {
-                                    $("#panel-group"+i).append("<input class='form-control' type='radio'/>");
-                                    $("#panel-group"+i).append("<label>" + data.questions[i].options[j].option + "</label>")
+                                    $("#form-group"+i).append("<input class='form-control' type='radio'/>");
+                                    $("#form-group"+i).append("<label>" + data.questions[i].options[j].option + "</label>")
                                 } 
                                 break;
 
@@ -181,11 +182,11 @@
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
                                 $("#panel-body" +i).append("<div class='form-inline' id='form-inline" + i + "'></div>");
-                                $("#panel-inline"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
+                                $("#form-inline"+i).append("<div class='form-group' id='form-group" + i + "'></div>");
                                 for(var j = 0; j< data.questions[i].options.length; j++)
                                 {
-                                    $("#panel-group"+i).append("<input class='form-control' type='checkbox'/>");
-                                    $("#panel-group"+i).append("<label>" + data.questions[i].options[j].option + "</label>")
+                                    $("#form-group"+i).append("<input class='form-control' type='checkbox'/>");
+                                    $("#form-group"+i).append("<label>" + data.questions[i].options[j].option + "</label>")
                                 } 
                                 break;
                             
@@ -197,8 +198,8 @@
                                 $("#panel-title"+i).append("  第 <span>"+ k + "</span> 题：");
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
-                                $("#panel-body"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
-                                $("#panel-group"+i).append("<input class='form-control' disabled/>");
+                                $("#panel-body"+i).append("<div class='form-group' id='form-group" + i + "'></div>");
+                                $("#form-group"+i).append("<input class='form-control' disabled/>");
                                 break;
                             
                             case '多项填空题' :
@@ -210,10 +211,10 @@
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
                                 $("#panel-body" +i).append("<div class='form-inline' id='form-inline" + i + "'></div>");
-                                $("#panel-inline"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
+                                $("#form-inline"+i).append("<div class='form-group' id='form-group" + i + "'></div>");
                                 for(var j = 0;j<data.questions[i].options.length;j++)
                                 {
-                                    $("#panel-group"+i).append("<div style='size: auto'><label>_______</label><label>" + data.questions[i].options[j].option+ "</label></div>")
+                                    $("#form-group"+i).append("<div style='size: auto'><label>_______</label><label>" + data.questions[i].options[j].option+ "</label></div>")
                                 }
                                 break;
 
@@ -226,11 +227,11 @@
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
                                 $("#panel-body"+i).append("<div class='form-horizontal row' id='form-horizontal" + i + "'></div>");
-                                $("#panel-horizontal"+i).append("<div class='form-group col-md-3 col-xs-3 col-sm-3' id='form-group" + i + "'></div>");
+                                $("#form-horizontal"+i).append("<div class='form-group col-md-3 col-xs-3 col-sm-3' id='form-group" + i + "'></div>");
                                 for(var j = 0;j<data.questions[i].options.length;j++)
                                 {
-                                    $("#panel-group"+i).append("<input style='margin: 5% 45%; vertical-align: middle!important;border: none!important;'name='' value='"+ j +"' type='radio'/>");
-                                    $("#panel-group"+i).append("<form action='#' class='dropzone'><div class='dz-preview dz-processing dz-image-preview dz-success dz-complete'><div class='dz-image'><img style='width: inherit;height: inherit;' src='"+ data.questions[i].options[j].option+ "'/></div></div></form>");
+                                    $("#form-group"+i).append("<input style='margin: 5% 45%; vertical-align: middle!important;border: none!important;'name='' value='"+ j +"' type='radio'/>");
+                                    $("#form-group"+i).append("<form action='#' class='dropzone'><div class='dz-preview dz-processing dz-image-preview dz-success dz-complete'><div class='dz-image'><img style='width: inherit;height: inherit;' src='"+ data.questions[i].options[j].option+ "'/></div></div></form>");
                                 }
                                 break;
                                 
@@ -243,11 +244,11 @@
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
                                 $("#panel-body"+i).append("<div class='form-horizontal row' id='form-horizontal" + i + "'></div>");
-                                $("#panel-horizontal"+i).append("<div class='form-group col-md-3 col-xs-3 col-sm-3' id='form-group" + i + "'></div>");
+                                $("#form-horizontal"+i).append("<div class='form-group col-md-3 col-xs-3 col-sm-3' id='form-group" + i + "'></div>");
                                 for(var j = 0;j<data.questions[i].options.length;j++)
                                 {
-                                    $("#panel-group"+i).append("<input style='margin: 5% 45%; vertical-align: middle!important;border: none!important;'name='' value='"+ j +"' type='checkbox'/>");
-                                    $("#panel-group"+i).append("<form action='#' class='dropzone'><div class='dz-preview dz-processing dz-image-preview dz-success dz-complete'><div class='dz-image'><img style='width: inherit;height: inherit;' src='"+ data.questions[i].options[j].option+ "'/></div></div></form>");
+                                    $("#form-group"+i).append("<input style='margin: 5% 45%; vertical-align: middle!important;border: none!important;'name='' value='"+ j +"' type='checkbox'/>");
+                                    $("#form-group"+i).append("<form action='#' class='dropzone'><div class='dz-preview dz-processing dz-image-preview dz-success dz-complete'><div class='dz-image'><img style='width: inherit;height: inherit;' src='"+ data.questions[i].options[j].option+ "'/></div></div></form>");
                                 }
                                 break;
 
@@ -260,10 +261,10 @@
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
                                 $("#panel-body" +i).append("<div class='form-inline' id='form-inline" + i + "'></div>");
-                                $("#panel-inline"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
+                                $("#form-inline"+i).append("<div class='form-group' id='form-group" + i + "'></div>");
                                 for(var j = 0;j<data.questions[i].options.length;j++)
                                 {
-                                    $("#panel-group"+i).append("<input type='date' class='form-control' placeholder='点击选择时间'/>")
+                                    $("#form-group"+i).append("<input type='date' class='form-control' placeholder='点击选择时间'/>")
                                 }
                                 break;
 
@@ -275,8 +276,8 @@
                                 $("#panel-title"+i).append("  第 <span>"+ k + "</span> 题：");
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
-                                $("#panel-body"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
-                                $("#panel-group"+i).append("<input class='form-control' disabled/>");
+                                $("#panel-body"+i).append("<div class='form-group' id='form-group" + i + "'></div>");
+                                $("#form-group"+i).append("<input class='form-control' disabled/>");
                                 break;
 
                             case '图片上传题':
@@ -287,8 +288,8 @@
                                 $("#panel-title"+i).append("  第 <span>"+ k + "</span> 题：");
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
-                                $("#panel-body"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
-                                $("#panel-group"+i).append("<img width='200px' height='150px' th:width='200px' th:height='150px' src='../../img/upload.jpg'/>");
+                                $("#panel-body"+i).append("<div class='form-group' id='form-group" + i + "'></div>");
+                                $("#form-group"+i).append("<img width='200px' height='150px' th:width='200px' th:height='150px' src='../../img/upload.jpg'/>");
                                 break;
                             
                             case '多媒体上传':
@@ -299,8 +300,8 @@
                                 $("#panel-title"+i).append("  第 <span>"+ k + "</span> 题：");
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
-                                $("#panel-body"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
-                                $("#panel-group"+i).append("<img width='200px' height='150px' th:width='200px' th:height='150px' src='../../img/upload.jpg'/>");
+                                $("#panel-body"+i).append("<div class='form-group' id='form-group" + i + "'></div>");
+                                $("#form-group"+i).append("<img width='200px' height='150px' th:width='200px' th:height='150px' src='../../img/upload.jpg'/>");
                                 break;
 
                             case '混合单选题' :
@@ -311,12 +312,12 @@
                                 $("#panel-title"+i).append("  第 <span>"+ k + "</span> 题：");
                                 $("#panel-title"+i).append("<span>"+ data.questions[i].questionContext + "</span>");
                                 $("#panel-default"+i).append("<div class='panel-body' id='panel-body" + i + "'></div>");
-                                $("#panel-body"+i).append("<div class='form-group' id='panel-group" + i + "'></div>");
+                                $("#panel-body"+i).append("<div class='form-group' id='form-group" + i + "'></div>");
                                 for(var j = 0 ;j<data.questions[i].options.length;j++)
                                 {
-                                    $("panel-body"+i).append("<input class='form-control' type='radio' /><label>"+ data.questions[i].options[j].option+"</label>")
+                                    $("#form-group"+i).append("<input class='form-control' type='radio' /><label>"+ data.questions[i].options[j].option+"</label>")
                                 }
-                                $("panel-body"+i).append("<input class='form-control' type='radio' /><label>"+ "其他" +"</label>")
+                                $("#form-group"+i).append("<input class='form-control' type='radio' /><label>"+ "其他" +"</label>")
                                 break;
 
                         }
