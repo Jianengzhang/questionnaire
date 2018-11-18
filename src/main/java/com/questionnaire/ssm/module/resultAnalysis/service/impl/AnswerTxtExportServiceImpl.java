@@ -14,6 +14,7 @@ import java.util.*;
 
 /**
  * Created by 郑晓辉 on 2017/7/22.
+ * modified by 葛家豪 on 2018/11/5
  * Description: 答案文本数据导出
  */
 @Service
@@ -59,13 +60,22 @@ public class AnswerTxtExportServiceImpl implements AnswerTxtExportService {
         Iterator<ExportTxtDataDTO.KeySetNode> iterator = sheetDataMap.keySet().iterator();
         ExportTxtDataDTO.KeySetNode curKeyNode;
         List<ExportTxtDataDTO.ValueNode> curValueList;
+        Set<ExportTxtDataDTO.KeySetNode> arr=sheetDataMap.keySet();
+        List<ExportTxtDataDTO.KeySetNode>list= new ArrayList<ExportTxtDataDTO.KeySetNode>(arr);
+        Collections.sort(list, new Comparator<ExportTxtDataDTO.KeySetNode>() {
+            @Override
+            public int compare(ExportTxtDataDTO.KeySetNode o1, ExportTxtDataDTO.KeySetNode o2) {
+                return (o1.getQesOrder()-o2.getQesOrder());
 
+            }
+        });
+        iterator=list.iterator();
         Sheet curSheet;
         Row curRow;
         for (int sheetIndex = 0; sheetIndex < sheetNum; sheetIndex++) {
             while (iterator.hasNext()) {
                 curKeyNode = iterator.next();
-                curSheet = wb.createSheet("问题编号-" + curKeyNode.getQesID().toString());
+                curSheet = wb.createSheet("问题编号-" + (new Integer((curKeyNode.getQesOrder()+1)).toString()));
                 curValueList = sheetDataMap.get(curKeyNode);
                 Row firstRow = curSheet.createRow(0);
                 firstRow.createCell(0).setCellValue("问题：");

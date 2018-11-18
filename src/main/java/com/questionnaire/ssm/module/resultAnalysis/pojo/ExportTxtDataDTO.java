@@ -32,7 +32,7 @@ public class ExportTxtDataDTO {
         ValueNode curValueNode = null;
         List<ValueNode> valueNodeList = null;
         for (AnswerTxtExportDO curObj : doList) {
-            KeySetNode curKeyNode = new KeySetNode(curObj.getQuestionId(), curObj.getQuestionContext());
+            KeySetNode curKeyNode = new KeySetNode(curObj.getQuestionId(), curObj.getQuestionContext(),curObj.getQuestionOrder());
             curValueNode = new ValueNode(curObj.getAnswerPaperId(), curObj.getAnswerStr());
 
             if (keySetNode == null) {
@@ -67,10 +67,12 @@ public class ExportTxtDataDTO {
     public class KeySetNode {
         private Long qesID;
         private String qesContent;
+        private Integer qesOrder;
 
-        public KeySetNode(Long qesID, String qesContent) {
+        public KeySetNode(Long qesID, String qesContent, Integer qesOrder) {
             this.qesID = qesID;
             this.qesContent = qesContent;
+            this.qesOrder = qesOrder;
         }
 
         @Override
@@ -113,6 +115,14 @@ public class ExportTxtDataDTO {
 
         public void setQesContent(String qesContent) {
             this.qesContent = qesContent;
+        }
+
+        public Integer getQesOrder() {
+            return qesOrder;
+        }
+
+        public void setQesOrder(Integer qesOrder) {
+            this.qesOrder = qesOrder;
         }
     }
 

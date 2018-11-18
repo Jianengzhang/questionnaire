@@ -4,33 +4,37 @@
     <select id="listResultTxtByIdsAndTypes"
             resultType="com.questionnaire.ssm.module.resultAnalysis.pojo.AnswerTxtExportDO">
         /*
-            @param missionID 任务编号
-            @param qesID	问卷编号
-            @param except question types 结果中不包含的问题类型
-            @function	根据 任务ID 以及 问卷ID 查询全部相关答卷文本信息
+        @param missionID 任务编号
+        @param qesID	问卷编号
+        @param except question types 结果中不包含的问题类型
+        @function	根据 任务ID 以及 问卷ID 查询全部相关答卷文本信息
         */
         SELECT
-            paper.question_id AS questionId,
-            q.question_context AS questionContext,
-            paper.answer_paper_id AS answerPaperId,
-            paper.answer_string AS answerStr
+        paper.question_id AS questionId,
+        q.question_context AS questionContext,
+        MQQ.question_order AS  questionOrder,
+        paper.answer_paper_id AS answerPaperId,
+        paper.answer_string AS answerStr
         FROM
-            (
-                SELECT
-                    ap.answer_paper_id,
-                    ad.answer_string,
-                    ad.question_id
-                FROM
-                    answer_paper AS ap
-                INNER JOIN answer_detail AS ad
-                WHERE
-                    ap.answer_paper_id = ad.answer_paper_id
-                AND ap.mission_id = #{missionID}
-                AND ap.questionnaire_id = #{qesID}
-            ) AS paper
-        INNER JOIN question AS q
+        (
+        SELECT
+        ap.answer_paper_id,
+        ad.answer_string,
+        ad.question_id
+        FROM
+        answer_paper AS ap
+        INNER JOIN answer_detail AS ad
         WHERE
-            q.question_id = paper.question_id
+        ap.answer_paper_id = ad.answer_paper_id
+        AND ap.mission_id = #{missionID}
+        AND ap.questionnaire_id = #{qesID}
+        ) AS paper
+        INNER JOIN question AS q
+        JOIN mapping_questionnaire_question AS MQQ
+        WHERE
+        q.question_id = paper.question_id
+        AND MQQ.question_id = paper.question_id
+        AND MQQ.questionnaire_id = #{qesID}
         AND q.question_type IN
         <foreach collection="exceptTypeList" open="(" separator="," close=")" item="item">
             #{item}

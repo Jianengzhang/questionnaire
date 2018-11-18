@@ -9,6 +9,8 @@ public class AnswerTxtExportDO {
     private Long questionId;
     //问题内容
     private String questionContext;
+    //问题在试卷中的位置
+    private Integer questionOrder;
     //答卷编号
     private Long answerPaperId;
     //答案内容
@@ -19,6 +21,7 @@ public class AnswerTxtExportDO {
         return "AnswerTxtExportDO{" +
                 "questionId=" + questionId +
                 ", questionContext='" + questionContext + '\'' +
+                ", questionOrder=" + questionOrder +
                 ", answerPaperId=" + answerPaperId +
                 ", answerStr='" + answerStr + '\'' +
                 '}';
@@ -38,6 +41,14 @@ public class AnswerTxtExportDO {
 
     public void setQuestionContext(String questionContext) {
         this.questionContext = questionContext;
+    }
+
+    public Integer getQuestionOrder() {
+        return questionOrder;
+    }
+
+    public void setQuestionOrder(Integer questionOrder) {
+        this.questionOrder = questionOrder;
     }
 
     public Long getAnswerPaperId() {

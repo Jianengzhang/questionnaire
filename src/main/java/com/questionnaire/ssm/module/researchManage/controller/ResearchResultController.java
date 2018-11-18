@@ -45,6 +45,12 @@ public class ResearchResultController {
     }
 
 
+    /**
+     * 上传答卷中的视频
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @PostMapping(value = "/submitAnswerMultiMedia")
     public ResponsePkt postMediaAndReturnPath(HttpServletRequest request) throws Exception {
         String userTel = UserValidationUtil.getUserTel(logger);
@@ -64,7 +70,7 @@ public class ResearchResultController {
                 picFolder.mkdirs();
             }
             mediaRelativePath = userTel + "\\" + todayDateStr + "\\" + CheckPicUtil.getPicType(fileName);
-            File savingMedia = new File(CONSTANT.UPLOAD_PICTURE_QUESTION + "\\" + mediaRelativePath);
+            File savingMedia = new File(CONSTANT.UPLOAD_MULTIMEDIA_ANSWER + "\\" + mediaRelativePath);
             multipartFile.transferTo(savingMedia);
         }
 
