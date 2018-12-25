@@ -293,13 +293,326 @@
                                 "</div>" +
                                 "</div>" +
                                 "<div class='cq-items-content'>" +
+                                '<textarea style="line-height: 1.6;font-size: 14px;" class="form-control" placeholder="此处为简答题答题区"disabled="disabled"rows="3"></textarea>'+
                                 "<div class='cq-items-ctrl'>" +
                                 "<a href='javascript:void(0);' class='ui-set-must-done' data-tisp='设为必做题'><i class='icon-enshrine'></i></a>" +
                                 "</div>" +
                                 "</div>" +
                                 "</div>" +
                                 "</li>")
+                            break;
+                        case '时间题':
+                            $("#questionsUl").append(
+                                "<li class='ui-module items-questions'>" +
+                                    "<div class='theme-type'>" +
+                                        "<div class='module-menu'>" +
+                                            "<h4>" + num + "</h4>" +
+                                            "<div class='module-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-up-btn' data-tisp='上移'><i class='icon-up'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-down-btn' data-tisp='下移'><i class='icon-down'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-clone-btn' data-tisp='复制'><i class='icon-clone'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-del-btn' data-tisp='删除'><i class='icon-del'></i></a>" +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='ui-drag-area'>" +
+                                            "<div data-Tid='{{itmetid}}' data-questionType='" + data[i].questionType + "'>" +
+                                                '<input class="form-control"style="font-size:16px;border: 1px double #e8e8e8;"onclick="editingTitleFunc(this);" value="'+ data[i].questionContext+'" placeholder="请输入时间题标题"/>' +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='cq-items-content'>" +
+                                            '<div class="form-horizontal" data-checkType="{{type}}" data-nameStr="{{name}}">'+
+                                                '<div class="form-group" data-option-follow="{{itemData.optionFollow}}">'+
+                                                    '<div class="col-sm-offset-1 col-sm-10">'+
+                                                        '<input class="form-control" style="border: 1px double #fff;"onclick="editingOptionFunc(this);"data-Tid=" {{itemData.tid}}"type="date"value="{{itemData.option}}"placeholder="选项{{i+1}}"/>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<div class="cq-items-ctrl">'+
+                                                '<a href="javascript:void(0);" class="ui-set-must-done" data-tisp="设为必做题">'+
+                                                    '<i class="icon-enshrine"></i>'+
+                                                '</a>'+
+                                                '<a href="javascript:void(0);" class="ui-add-answer-btn" data-tisp="添加问题说明">'+
+                                                    '<i class="icon-assignment"></i>'+
+                                                '</a>'+ 
+                                                '<a href="javascript:void(0);" class="ui-add-logic" data-tisp="添加逻辑设置">'+
+                                                    '<i class="icon-set"></i>'+
+                                                '</a>'+
+                                            '</div>'+
+                                        "</div>" +
+                                    "</div>" +
+                                "</li>")
+                            break;
+                        case '图片上传':
+                            $("#questionsUl").append(
+                                "<li class='ui-module items-questions'>" +
+                                    "<div class='theme-type'>" +
+                                        "<div class='module-menu'>" +
+                                            "<h4>" + num + "</h4>" +
+                                            "<div class='module-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-up-btn' data-tisp='上移'><i class='icon-up'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-down-btn' data-tisp='下移'><i class='icon-down'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-clone-btn' data-tisp='复制'><i class='icon-clone'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-del-btn' data-tisp='删除'><i class='icon-del'></i></a>" +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='ui-drag-area'>" +
+                                            "<div data-Tid='{{itmetid}}' data-questionType='" + data[i].questionType + "'>" +
+                                                '<input class="form-control"style="font-size:16px;border: 1px double #e8e8e8;"onclick="editingTitleFunc(this);" placeholder="请输入图片上传标题"/>' +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='cq-items-content'>" +
+                                            '<div class="form-horizontal" data-tid="{{items[0].tid}}">'+
+                                                '<img width="200px" height="150px" th:width="200px" th:height="150px" src="../../img/upload.jpg"/>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="cq-items-ctrl">'+
+                                            '<a href="javascript:void(0);" class="ui-set-must-done" data-tisp="设为必做题">'+
+                                                '<i class="icon-enshrine"></i>'+
+                                            '</a>'+
+                                            '<a href="javascript:void(0);" class="ui-add-answer-btn" data-tisp="添加问题说明">'+
+                                                '<i class="icon-assignment"></i>'+
+                                            '</a>'+ 
+                                            '<a href="javascript:void(0);" class="ui-add-logic" data-tisp="添加逻辑设置">'+
+                                                '<i class="icon-set"></i>'+
+                                            '</a>'+
+                                        '</div>'+
+                                    "</div>" +
+                                "</li>")
+                            break;
+                        case '多媒体上传':
+                            $("#questionsUl").append(
+                                "<li class='ui-module items-questions'>" +
+                                    "<div class='theme-type'>" +
+                                        "<div class='module-menu'>" +
+                                            "<h4>" + num + "</h4>" +
+                                            "<div class='module-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-up-btn' data-tisp='上移'><i class='icon-up'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-down-btn' data-tisp='下移'><i class='icon-down'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-clone-btn' data-tisp='复制'><i class='icon-clone'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-del-btn' data-tisp='删除'><i class='icon-del'></i></a>" +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='ui-drag-area'>" +
+                                            "<div data-Tid='{{itmetid}}' data-questionType='" + data[i].questionType + "'>" +
+                                                '<input class="form-control"style="font-size:16px;border: 1px double #e8e8e8;"onclick="editingTitleFunc(this);" placeholder="请输入多媒体上传标题"/>' +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='cq-items-content'>" +
+                                            '<div class="form-horizontal" data-tid="{{items[0].tid}}">'+
+                                                '<img width="200px" height="150px" th:width="200px" th:height="150px" src="../../img/upload.jpg"/>'+
+                                            '</div>'+
+                                        '</div>'+
+                                        '<div class="cq-items-ctrl">'+
+                                            '<a href="javascript:void(0);" class="ui-set-must-done" data-tisp="设为必做题">'+
+                                                '<i class="icon-enshrine"></i>'+
+                                            '</a>'+
+                                            '<a href="javascript:void(0);" class="ui-add-answer-btn" data-tisp="添加问题说明">'+
+                                                '<i class="icon-assignment"></i>'+
+                                            '</a>'+ 
+                                            '<a href="javascript:void(0);" class="ui-add-logic" data-tisp="添加逻辑设置">'+
+                                                '<i class="icon-set"></i>'+
+                                            '</a>'+
+                                        '</div>'+
+                                    "</div>" +
+                                "</li>")
+                            break;
+                        case '单项填空题':
+                            $("#questionsUl").append(
+                                "<li class='ui-module items-questions'>" +
+                                    "<div class='theme-type'>" +
+                                        "<div class='module-menu'>" +
+                                            "<h4>" + num + "</h4>" +
+                                            "<div class='module-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-up-btn' data-tisp='上移'><i class='icon-up'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-down-btn' data-tisp='下移'><i class='icon-down'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-clone-btn' data-tisp='复制'><i class='icon-clone'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-del-btn' data-tisp='删除'><i class='icon-del'></i></a>" +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='ui-drag-area'>" +
+                                            "<div data-Tid='{{itmetid}}' data-questionType='" + data[i].questionType + "'>" +
+                                                '<input class="form-control"style="font-size:16px;border: 1px double #fff;"onclick="editingTitleFunc(this);" placeholder="请输入单项填空题标题"/>' +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='cq-items-content'>" +
+                                            '<div class="describe-edit-content T_plugins" data-tid="{{items[0].tid}}">'+
+                                                '<textarea style="line-height: 1.6;font-size: 14px;" class="form-control"placeholder="此处为单项填空题答题区"disabled="disabled"rows="2"></textarea>'+
+                                            '</div>'+
+                                            '<div class="cq-items-ctrl">'+
+                                                '<a href="javascript:void(0);" class="ui-set-must-done" data-tisp="设为必做题">'+
+                                                    '<i class="icon-enshrine"></i>'+
+                                                '</a>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    "</div>" +
+                                "</li>")
+                            break;
+                        case '多项填空题':
+                            $("#questionsUl").append(
+                                "<li class='ui-module items-questions'>" +
+                                    "<div class='theme-type'>" +
+                                        "<div class='module-menu'>" +
+                                            "<h4>" + num + "</h4>" +
+                                            "<div class='module-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-up-btn' data-tisp='上移'><i class='icon-up'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-down-btn' data-tisp='下移'><i class='icon-down'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-clone-btn' data-tisp='复制'><i class='icon-clone'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-del-btn' data-tisp='删除'><i class='icon-del'></i></a>" +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='ui-drag-area'>" +
+                                            "<div data-Tid='{{itmetid}}' data-questionType='" + data[i].questionType + "'>" +
+                                                '<input class="form-control"style="font-size:16px;border: 1px double #fff;"onclick="editingTitleFunc(this);" placeholder="请输入多项填空题标题"/>' +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='cq-items-content'>" +
+                                            '<div class="describe-edit-content T_plugins" data-tid="{{items[0].tid}}">'+
+                                                '<div class="multi_completion_options">'+
+                                                    '<div class="container" style="width:800px;">'+
+                                                        '<div class="row">'+
+                                                            '<textarea name="multiCompletionResult"class="col-sm-12"style="font-size: 15px;border: 1px dotted rgba(94,94,94,0.95);"rows="3"disabled="disabled"placeholder="此处输出结果"></textarea>'+
+                                                            '<input name="editMultiCompletion" class="col-sm-12"style="border: 1px double #fff;top: 10px;overflow: scroll"onclick="editingOptionFunc(this);"onkeydown="keyDownFunc(this);"placeholder="此处编辑问题（以一个或多个‘_’分割）"/>'+
+                                                        '</div>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            '<div class="cq-items-ctrl">'+
+                                                '<a href="javascript:void(0);" class="ui-set-must-done" data-tisp="设为必做题">'+
+                                                    '<i class="icon-enshrine"></i>'+
+                                                '</a>'+
+                                            '</div>'+
+                                        '</div>'+
+                                    "</div>" +
+                                "</li>")
+                            break;
+                        case '图片单选题':
+                            $("#questionsUl").append(
+                                "<li class='ui-module items-questions'>" +
+                                    "<div class='theme-type'>" +
+                                        "<div class='module-menu'>" +
+                                            "<h4>" + num + "</h4>" +
+                                            "<div class='module-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-up-btn' data-tisp='上移'><i class='icon-up'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-down-btn' data-tisp='下移'><i class='icon-down'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-clone-btn' data-tisp='复制'><i class='icon-clone'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-del-btn' data-tisp='删除'><i class='icon-del'></i></a>" +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='ui-drag-area'>" +
+                                            "<div data-Tid='{{itmetid}}' data-questionType='" + data[i].questionType + "'>" +
+                                                '<input class="form-control"style="font-size:16px;border: 1px double #e8e8e8;"onclick="editingTitleFunc(this);" placeholder="请输入图片单选题标题"/>' +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='cq-items-content'>" +
+                                            '<div class="form-horizontal row" data-checkType="{{type}}" data-nameStr="{{name}}">'+
+                                                '<div class="form-group col-sm-3">'+
+                                                    '<div class="col-sm-12">'+
+                                                        '<form action="#" id="{{itmetid}}" class="dropzone" data-serv-url=""></form>'+
+                                                        '<input style="margin: 5% 45%; vertical-align: middle!important;border: none!important;"name="{{name}}" type="radio"/>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            "<div class='cq-items-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-add-item-btn' data-tisp='添加选项'><i class='icon-plus'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-remove-item-btn' data-tisp='移除选项'><i class='icon-jian'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-set-must-done' data-tisp='设为必做题'><i class='icon-enshrine'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-add-answer-btn' data-tisp='添加问题说明'><i class='icon-assignment'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-add-logic' data-tisp='添加逻辑设置'><i class='icon-set'></i></a>" +
+                                            "</div>" +
+                                        '</div>'+
+                                    "</div>" +
+                                "</li>")
+                            break;
+                        case '图片多选题':
+                            $("#questionsUl").append(
+                                "<li class='ui-module items-questions'>" +
+                                    "<div class='theme-type'>" +
+                                        "<div class='module-menu'>" +
+                                            "<h4>" + num + "</h4>" +
+                                            "<div class='module-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-up-btn' data-tisp='上移'><i class='icon-up'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-down-btn' data-tisp='下移'><i class='icon-down'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-clone-btn' data-tisp='复制'><i class='icon-clone'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-del-btn' data-tisp='删除'><i class='icon-del'></i></a>" +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='ui-drag-area'>" +
+                                            "<div data-Tid='{{itmetid}}' data-questionType='" + data[i].questionType + "'>" +
+                                                '<input class="form-control"style="font-size:16px;border: 1px double #e8e8e8;"onclick="editingTitleFunc(this);" placeholder="请输入图片多选题标题"/>' +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='cq-items-content'>" +
+                                            '<div class="form-horizontal row" data-checkType="{{type}}" data-nameStr="{{name}}">'+
+                                                '<div class="form-group col-sm-3">'+
+                                                    '<div class="col-sm-12">'+
+                                                        '<form action="#" id="{{itmetid}}" class="dropzone" data-serv-url=""></form>'+
+                                                        '<input style="margin: 5% 45%; vertical-align: middle!important;border: none!important;"name="{{name}}" type="checkbox"/>'+
+                                                    '</div>'+
+                                                '</div>'+
+                                            '</div>'+
+                                            "<div class='cq-items-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-add-item-btn' data-tisp='添加选项'><i class='icon-plus'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-remove-item-btn' data-tisp='移除选项'><i class='icon-jian'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-set-must-done' data-tisp='设为必做题'><i class='icon-enshrine'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-add-answer-btn' data-tisp='添加问题说明'><i class='icon-assignment'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-add-logic' data-tisp='添加逻辑设置'><i class='icon-set'></i></a>" +
+                                            "</div>" +
+                                        '</div>'+
+                                    "</div>" +
+                                "</li>")
+                            break;
+                        case '混合单选题':
+                            $("#questionsUl").append(
+                                "<li class='ui-module items-questions'>" +
+                                    "<div class='theme-type'>" +
+                                        "<div class='module-menu'>" +
+                                            "<h4>" + num + "</h4>" +
+                                            "<div class='module-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-up-btn' data-tisp='上移'><i class='icon-up'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-down-btn' data-tisp='下移'><i class='icon-down'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-clone-btn' data-tisp='复制'><i class='icon-clone'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-del-btn' data-tisp='删除'><i class='icon-del'></i></a>" +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='ui-drag-area'>" +
+                                            "<div data-Tid='{{itmetid}}' data-questionType='" + data[i].questionType + "'>" +
+                                                '<input class="form-control"style="font-size:16px;border: 1px double #e8e8e8;"onclick="editingTitleFunc(this);" placeholder="请输入混合单选题标题"/>' +
+                                            "</div>" +
+                                        "</div>" +
+                                        "<div class='cq-items-content'>" +
+                                            '<div class="form-horizontal" id="form-horizontal'+ count + i +'"' + 'data-checkType="{{type}}" data-nameStr="{{name}}">'+
+                                            '</div>'+
+                                            "<div class='cq-items-ctrl'>" +
+                                                "<a href='javascript:void(0);' class='ui-add-item-btn' data-tisp='添加选项'><i class='icon-plus'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-remove-item-btn' data-tisp='移除选项'><i class='icon-jian'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-set-must-done' data-tisp='设为必做题'><i class='icon-enshrine'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-add-answer-btn' data-tisp='添加问题说明'><i class='icon-assignment'></i></a>" +
+                                                "<a href='javascript:void(0);' class='ui-add-logic' data-tisp='添加逻辑设置'><i class='icon-set'></i></a>" +
+                                            "</div>" +
+                                        '</div>'+
+                                    "</div>" +
+                                "</li>")
+                                for (var j = 0; j < data[i].options.length; j++) {
+                                $("#form-horizontal" + count + i).append(
+                                    "<div class='form-group'>" +
+                                        "<label class='col-sm-1 control-label'>" +
+                                            "<input type='radio' name='{{name}}' value='{{itemData.value}}'/>" +
+                                        "</label>" +
+                                        "<div class='col-sm-10'>" +
+                                            "<input class='form-control' style='border: 1px double #fff;'onclick='editingOptionFunc(this);'data-Tid='{{itemData.tid}}'value='" + data[i].options[j].option + "'/>" +
+                                        "</div>" +
+                                    "</div>")
+                                }
+                                $("#form-horizontal" + count + i).append(
+                                    "<div class='form-group'>" +
+                                        "<label class='col-sm-1 control-label'>" +
+                                            "<input type='radio' name='{{name}}' value='{{itemData.value}}'/>" +
+                                        "</label>" +
+                                        '<div class="col-sm-4"><h5>其他</h5></div>'+
+                                    "</div>"
 
+                                )
+                            break;
                     }
                 }
 
