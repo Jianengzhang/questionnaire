@@ -67,5 +67,4 @@ public class MyRealm extends AuthorizingRealm {
 
     private static final Logger logger = LoggerFactory.getLogger(MyRealm.class);
 
-
 }

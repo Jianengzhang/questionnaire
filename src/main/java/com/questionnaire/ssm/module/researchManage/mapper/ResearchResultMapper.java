@@ -3,6 +3,7 @@ package com.questionnaire.ssm.module.researchManage.mapper;
 import com.questionnaire.ssm.module.generated.pojo.AnswerDetail;
 import com.questionnaire.ssm.module.generated.pojo.AnswerPaper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * Created by 郑晓辉 on 2017/5/4.
  * Description: 调查结果处理mapper
  */
+@Repository
 public interface ResearchResultMapper {
 
     /**
