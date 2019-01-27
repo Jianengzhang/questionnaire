@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -41,21 +42,24 @@ public class ResearchResultController {
         if (answerPaperVOList.size() <= 0) {
             return ResultUtil.success(0);
         }
-        return ResultUtil.success(researchResultService.multiSubmitAnswerPaper(userTel, answerPaperVOList));
+        int num = researchResultService.multiSubmitAnswerPaper(userTel, answerPaperVOList);
+        return ResultUtil.success(num);
     }
 
 
     /**
      * 上传答卷中的视频
-     * @param request
+     *
+     * @param files
      * @return
      * @throws Exception
      */
     @PostMapping(value = "/submitAnswerMultiMedia")
-    public ResponsePkt postMediaAndReturnPath(HttpServletRequest request) throws Exception {
+    @ResponseBody
+    public ResponsePkt postMediaAndReturnPath(MultipartFile[] files) throws Exception {
         String userTel = UserValidationUtil.getUserTel(logger);
-        MultipartHttpServletRequest multiFileRequest = (MultipartHttpServletRequest) request;
-        List<MultipartFile> files = multiFileRequest.getFiles("file");
+//        MultipartHttpServletRequest multiFileRequest = (MultipartHttpServletRequest) request;
+//        List<MultipartFile> files = multiFileRequest.getFiles("file");
 
         String fileName = null, savePath = null, mediaRelativePath = null, todayDateStr = null;
         for (MultipartFile multipartFile : files) {

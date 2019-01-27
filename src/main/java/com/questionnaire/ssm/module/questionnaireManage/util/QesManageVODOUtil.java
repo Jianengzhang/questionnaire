@@ -1,5 +1,6 @@
 package com.questionnaire.ssm.module.questionnaireManage.util;
 
+import org.apache.commons.codec.binary.Base64;
 import com.questionnaire.ssm.module.generated.pojo.AnswerDetail;
 import com.questionnaire.ssm.module.generated.pojo.QuestionWithBLOBs;
 import com.questionnaire.ssm.module.generated.pojo.Questionnaire;
@@ -11,10 +12,13 @@ import com.questionnaire.ssm.module.global.util.UserValidationUtil;
 import com.questionnaire.ssm.module.questionnaireManage.enums.QuestionTypeEnum;
 import com.questionnaire.ssm.module.questionnaireManage.pojo.*;
 import com.questionnaire.ssm.module.researchManage.pojo.AnswerDetailVO;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -160,19 +164,48 @@ public class QesManageVODOUtil {
         String userTel = UserValidationUtil.getUserTel(logger);
         AnswerDetail answerDetail = new AnswerDetail();
         answerDetail.setQuestionId(answerDetailVO.getQuestionId());
+        answerDetail.setAnswerString(answerDetailVO.getAnswer().get(0));
         //获取汉字形式文本的数据库表示值
         String questionCode = parse2DOQuestionType(answerDetailVO.getQuestionType());
         if (answerDetailVO.getAnswer().size() > 0) {
             if (QuestionTypeEnum.MULTIMEDIA_UPLOAD.getCode().equals(questionCode)) {
                 //StringUtils.substringAfterLast()
-                String separator = "\\";
+                String separator = "/";
                 String str = answerDetail.getAnswerString();
                 int pos = str.lastIndexOf(separator);
                 String res = pos != -1 && pos != str.length() - separator.length() ?
                         str.substring(pos + separator.length()) : str;
                 answerDetail.setAnswerString(userTel + "\\" + CheckPicUtil.getTodayFolder() + "\\" + res);
             }
-            answerDetail.setAnswerString(toAnswerString(answerDetailVO.getAnswer(), questionCode));
+            if (QuestionTypeEnum.UPLOAD_PICTURE.getCode().equals(questionCode)) {
+                Base64 decoder = new Base64();
+                byte[] b = decoder.decode(answerDetail.getAnswerString());
+                for (int i = 0; i < b.length; ++i) {
+                    if (b[i] < 0) {// 调整异常数据
+                        b[i] += 256;
+                    }
+                }
+
+                // 生成jpeg图片
+                String relativeImgPath = userTel + File.separator +
+                        CheckPicUtil.getTodayFolder() + File.separator +
+                        new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) + ".jpg";//新生成的图片
+                //新建一个文件夹
+                File picFolder = new File(CONSTANT.UPLOAD_PICTURE_ANSWER + File.separator +
+                        userTel + File.separator +
+                        CheckPicUtil.getTodayFolder());
+                if (!picFolder.exists()) {
+                    picFolder.mkdirs();
+                }
+                OutputStream out = new FileOutputStream(CONSTANT.UPLOAD_PICTURE_ANSWER + File.separator + relativeImgPath);
+                out.write(b);
+                out.flush();
+                out.close();
+                answerDetail.setAnswerString(relativeImgPath);
+            } else {
+                answerDetail.setAnswerString(toAnswerString(answerDetailVO.getAnswer(), questionCode));
+            }
+
         } else {
             //该题用户未作答，默认设置为‘未回答’
             answerDetail.setAnswerString(CONSTANT.getNullAnswerString());

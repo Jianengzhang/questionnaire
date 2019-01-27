@@ -31,7 +31,9 @@ public class UnitController {
     @ResponseBody
     public List<UnitInfoVO> listUnitInfo() throws Exception {
         UserValidationUtil.checkUserValid(logger);
-        return unitService.listUnitInfo();
+        System.out.println("tytyty");
+        List<UnitInfoVO> lexus = unitService.listUnitInfo();
+        return lexus;
     }
 
     private UnitService unitService;
