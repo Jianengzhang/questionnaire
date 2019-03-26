@@ -28,7 +28,7 @@ $(function () {
     myChart.showLoading();
 
     $.ajax({
-        url: '/statisticalAnalysis/getQesPaperAnalyzeResult',
+        url: '../statisticalAnalysis/getQesPaperAnalyzeResult',
         type: 'get',
         async: false,
         dataType: 'json',
@@ -108,7 +108,7 @@ function setTableBodyData(i) {
         for (var i = 0; i < optionList.length; i++) {
 
             $.ajax({
-                url: '/fileIo/download/picture/qesPaper?picRelativePath=' + encodeURI(optionList[i]),
+                url: '../fileIo/download/picture/qesPaper?picRelativePath=' + encodeURI(optionList[i]),
                 method: 'get',
                 dataType: 'text',
                 success: function (data) {

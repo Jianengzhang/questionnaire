@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>问卷信息</title>
-    <link rel="shortcut icon" href="../../img/favicon.ico"/>
-    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="../../js/CreateQesResources/skin/dropZone/basic.min.css"/>
-    <link rel="stylesheet" href="../../js/CreateQesResources/skin/dropZone/dropzone.min.css"/>
+    <link rel="shortcut icon" href="../../img/favicon.ico"
+          th:href="@{../../img/favicon.ico}"/>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{../../css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../../js/CreateQesResources/skin/dropZone/basic.min.css"
+          th:href="@{../../js/CreateQesResources/skin/dropZone/basic.min.css}"/>
+    <link rel="stylesheet" href="../../js/CreateQesResources/skin/dropZone/dropzone.min.css"
+          th:href="@{../../js/CreateQesResources/skin/dropZone/dropzone.min.css}"/>
     <style>
         .print-btn {
             position: fixed;
@@ -58,7 +62,7 @@
                 <div class="panel-default" th:case="'单选题'">
                     <div class="panel-heading">
                         <div class="panel-title">
-                            
+
                             第 <span th:text="${iterStat.count}">[题号]</span> 题：
                             <span th:text="${curQes.questionContext}"></span>
                             (
@@ -165,7 +169,7 @@
                                     <div class="dz-preview dz-processing dz-image-preview dz-success dz-complete">
                                         <div class="dz-image">
                                             <img style="width: inherit;height: inherit;"
-                                                 th:src="@{/fileIo/refPic(picRelativePath=${curQesOption.option})}"/>
+                                                 th:src="@{../fileIo/refPic(picRelativePath=${curQesOption.option})}"/>
                                         </div>
                                     </div>
                                 </form>
@@ -196,11 +200,10 @@
                                     <div class="dz-preview dz-processing dz-image-preview dz-success dz-complete">
                                         <div class="dz-image">
                                             <img style="width: inherit;height: inherit;"
-                                                 th:src="@{/fileIo/refPic(picRelativePath=${curQesOption.option})}"/>
+                                                 th:src="@{../fileIo/refPic(picRelativePath=${curQesOption.option})}"/>
                                         </div>
                                     </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>
@@ -261,7 +264,8 @@
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <img width="200px" height="150px" th:width="200px" th:height="150px" src="../../img/upload.jpg"/>
+                            <img width="200px" height="150px" th:width="200px" th:height="150px"
+                                 src="../../img/upload.jpg" th:href="@{/img/upload.jpg}"/>
                         </div>
                     </div>
                 </div>
@@ -279,7 +283,8 @@
                     </div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <img width="200px" height="150px" th:width="200px" th:height="150px" src="../../img/upload.jpg"/>
+                            <img width="200px" height="150px" th:width="200px" th:height="150px"
+                                 src="../../img/upload.jpg"th:href="@{/img/upload.jpg}"/>
                         </div>
                     </div>
                 </div>
@@ -297,7 +302,7 @@
                         <div class="panel-body">
                             <div class="form-inline">
                                 <div class="form-group" th:if="${#lists.size(curQes.options)>0}"
-                                    th:each="curQesOption: ${curQes.options}">
+                                     th:each="curQesOption: ${curQes.options}">
                                     <input class="form-control" type="radio" th:name="${iterStat.index}"/>
                                     <label th:text="${curQesOption.option}">选项</label>
                                 </div>
@@ -325,17 +330,18 @@
     </div>
 </div>
 
-<script src="../../js/jquery.min.js"></script>
+<script src="../../js/jquery.min.js"
+        th:src="@{/js/jquery.min.js}"></script>
 <script>
     $(function () {
         $('#printQesBtn').on('click', function () {
             window.print();
         });
         $('#prevPaperBtn').on('click', function () {
-            window.location.href = '/questionnaireManage/displayPrevQesPaper';
+            window.location.href = '../questionnaireManage/displayPrevQesPaper';
         });
         $('#nextPaperBtn').on('click', function () {
-            window.location.href = '/questionnaireManage/displayNextQesPaper';
+            window.location.href = '../questionnaireManage/displayNextQesPaper';
         })
     });
 </script>

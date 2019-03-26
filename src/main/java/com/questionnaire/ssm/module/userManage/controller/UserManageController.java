@@ -117,7 +117,7 @@ public class UserManageController {
             OutputStream toClient = new BufferedOutputStream(response.getOutputStream());
             response.setContentType("application/vnd.ms-excel;charset=utf-8");
             response.setHeader("Content-Disposition", "attachment;filename="
-                    + new String((templateName + ".xls").getBytes(), "iso-8859-1"));
+                    + new String((templateName + ".xls").getBytes("UTF-8"), "iso-8859-1"));
             toClient.write(buffer);
             toClient.flush();
             toClient.close();

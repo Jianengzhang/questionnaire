@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <!----不可编辑内容结束---->
-                    <form id="userInfoForm" action="/userInfoManage/changeMyInfo" method="post">
+                    <form id="userInfoForm" action="../userInfoManage/changeMyInfo" method="post">
                         <div class="form-group">
                             <div class="row">
                                 <label class="col-md-2 control-label">性别：</label>
@@ -119,18 +119,18 @@
 
 <script src="../../js/jquery.min.js"
         th:src="@{/js/jquery.min.js}"></script>
-<script src="/WEB-INF/js/bootstrap.min.js"
+<script src="../../js/bootstrap.min.js"
         th:src="@{/js/bootstrap.min.js}"></script>
-<script src="/WEB-INF/js/plugins/layui/layui.js"
+<script src="../../js/plugins/layui/layui.js"
         th:src="@{/js/plugins/layui/layui.js}"></script>
-<script src="/WEB-INF/js/plugins/validate/jquery.validate.min.js"
+<script src="../../js/plugins/validate/jquery.validate.min.js"
         th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
-<script src="/WEB-INF/js/plugins/validate/messages_zh.min.js"
+<script src="../../js/plugins/validate/messages_zh.min.js"
         th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
 <script>
     $(function () {
         $.ajax({
-            url: '/userInfoManage/getMyInfo',
+            url: '../userInfoManage/getMyInfo',
             type: 'post',
             success: function (data) {
                 $('#userRealName').val(data.userRealName);

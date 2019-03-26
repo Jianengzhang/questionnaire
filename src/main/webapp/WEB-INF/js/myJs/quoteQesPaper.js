@@ -145,7 +145,7 @@ function getQesVOData(isDone, isTemplate) {
         return;
     }
     //访问服务器
-    var url = '/QesManageRest/postQuoteQesPaperData';
+    var url = '../QesManageRest/postQuoteQesPaperData';
     submitQesDataByJson(url, dataBase);
 }
 

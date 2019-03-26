@@ -174,7 +174,7 @@ function getQesVOData(isDone, isTemplate) {
     if (isSubmitted) {
         return;
     }
-    var url = '/questionnaireManage/create';
+    var url = '../questionnaireManage/create';
     submitQesDataByJson(url, dataBase);
 }
 
@@ -195,7 +195,7 @@ function submitQesDataByJson(url, jsonData) {
                     shade: 0.5,
                     closeBtn: 1
                 }, function () {
-                    window.location.href = "/questionnaireManage/getListMyQesPaperView";
+                    window.location.href = "../questionnaireManage/getListMyQesPaperView";
                 });
             }
             dealGlobalError(data);

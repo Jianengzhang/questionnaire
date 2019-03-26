@@ -462,7 +462,7 @@ function loadDataFn() {
 
     var questionArray = [];
     $.ajaxSettings.async = false;
-    $.getJSON('/QesManageRest/getEditQesPaperData', function (responseData) {
+    $.getJSON('../../QesManageRest/getEditQesPaperData', function (responseData) {
         editingQesPaperId = responseData.questionnaireId;
         $('#questionnaireTitle').val(responseData.questionnaireTitle);
         $('#questionnaireSubtitle').val(responseData.questionnaireSubtitle);
@@ -537,7 +537,7 @@ function loadDataFn() {
                         optionItem.optionFollow = questionOptionArray[j].optionFollow;
                         optionItem.encodedUrl = encodeURI(questionOptionArray[j].option);
                         var servData = $.ajax({
-                            url: '/fileIo/download/picture/qesPaper?picRelativePath=' + encodeURI(questionOptionArray[j].option),
+                            url: '../fileIo/download/picture/qesPaper?picRelativePath=' + encodeURI(questionOptionArray[j].option),
                             method: 'get',
                             dataType: 'text'
                         });

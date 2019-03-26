@@ -8,26 +8,18 @@ package com.questionnaire.ssm.module.global.constant;
 public class CONSTANT {
 
     /*上传图片路径*/
-//    public final static String UPLOAD_PICTURE_QUESTION ="C:\\Users\\Gaidar\\Documents\\Workplace\\questionnaire_files\\question-picture";
-//    public final static String UPLOAD_PICTURE_QUESTION = "F:\\创新实践\\uploadFiles\\question-picture";
-    public final static String UPLOAD_PICTURE_QUESTION = "C:\\Program Files\\Apache Software Foundation\\questionnaire_files\\question-picture";
+    public final static String UPLOAD_PICTURE_QUESTION = "E:\\questionnaire\\questionnaire_files\\question-picture";
     /*答卷中图片上传*/
-    public final static String UPLOAD_PICTURE_ANSWER = "C:\\Program Files\\Apache Software Foundation\\questionnaire_files\\answer-picture";
+    public final static String UPLOAD_PICTURE_ANSWER = "E:\\questionnaire\\questionnaire_files\\answer-picture";
     /*答卷中视频上传*/
-    public final static String UPLOAD_MULTIMEDIA_ANSWER = "C:\\Program Files\\Apache Software Foundation\\questionnaire_files\\answer-video";
-
+    public final static String UPLOAD_MULTIMEDIA_ANSWER = "E:\\questionnaire\\questionnaire_files\\answer-video";
     /*上传文件路径*/
-//    private final static String UPLOAD_FILE_PATH = "C:\\Users\\Gaidar\\Documents\\Workplace\\questionnaire_files\\temp_excels";
-//    private final static String UPLOAD_FILE_PATH = "F:\\创新实践\\uploadFiles\\excels";
-    private final static String UPLOAD_FILE_PATH = "C:\\Program Files\\Apache Software Foundation\\questionnaire_files\\temp_excels";
+    private final static String UPLOAD_FILE_PATH = "E:\\questionnaire\\questionnaire_files\\temp_excels";
     /*服务器模板文件路径*/
-//    private final static String DOWNLOAD_FOLDER_PATH = "C:\\Users\\Gaidar\\Documents\\Workplace\\questionnaire_files\\upload_templateFiles";
-//    private final static String DOWNLOAD_FOLDER_PATH = "F:\\创新实践\\uploadFiles\\uploadFile-template";
-    private final static String DOWNLOAD_FOLDER_PATH = "C:\\Program Files\\Apache Software Foundation\\questionnaire_files\\upload_templateFiles";
+    private final static String DOWNLOAD_FOLDER_PATH = "C:\\Users\\zhang\\Documents\\Workplace\\template";
+
     /*服务器用户头像路径*/
-//    private final static String USER_PICTURE_PATH = "C:\\Users\\Gaidar\\Documents\\Workplace\\questionnaire_files\\user-pictures";
-//    private final static String USER_PICTURE_PATH = "F:\\创新实践\\uploadFiles\\user-pictures";
-    private final static String USER_PICTURE_PATH = "C:\\Program Files\\Apache Software Foundation\\questionnaire_files\\user-pictures";
+    private final static String USER_PICTURE_PATH = "E:\\questionnaire\\questionnaire_files\\user-pictures";
 
     public final static int NO_FOLLOW_DEFAULT_VALUE = -1;
     //数据库中单位id文本切割符

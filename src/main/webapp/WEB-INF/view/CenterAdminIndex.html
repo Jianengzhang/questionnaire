@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="/WEB-INF/img/favicon.ico"
           th:href="@{/img/favicon.ico}"/>
-    <link href="/WEB-INF/css/bootstrap.min.css" rel="stylesheet"
+    <link href="../css/bootstrap.min.css" rel="stylesheet"
           th:href="@{/css/bootstrap.min.css}"/>
     <link href="/WEB-INF/css/style.css" rel="stylesheet"
           th:href="@{/css/style.css}"/>
@@ -83,16 +83,14 @@
                         <span class="nav-label">问卷管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="/questionnaireManage/getCreateView"
-                               th:href="@{/questionnaireManage/getCreateView}">创建问卷</a>
+                            <a class="J_menuItem" th:href="@{../questionnaireManage/getCreateView}">创建问卷</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="/questionnaireManage/getListMyQesPaperView"
-                               th:href="@{/questionnaireManage/getListMyQesPaperView}">查看问卷</a>
+                            <a class="J_menuItem" th:href="@{../questionnaireManage/getListMyQesPaperView}">查看问卷</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="/questionnaireManage/temporaryDeleteQesPaperView"
-                               th:href="@{/questionnaireManage/temporaryDeleteQesPaperView}">回收问卷</a>
+                            <a class="J_menuItem"
+                               th:href="@{../questionnaireManage/temporaryDeleteQesPaperView}">回收问卷</a>
                         </li>
                     </ul>
                 </li>
@@ -105,12 +103,12 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="/researchManage/createResearchView">
+                            <a class="J_menuItem" th:href="@{../researchManage/createResearchView}">
                                 创建调查
                             </a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="/researchManage/getMissionManageView">
+                            <a class="J_menuItem" th:href="@{../researchManage/getMissionManageView}">
                                 任务管理
                             </a>
                         </li>
@@ -122,10 +120,10 @@
                         <span class="nav-label">结果分析</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="/resultAnalysis/getPrimaryDataView">原始数据</a>
+                            <a class="J_menuItem" th:href="@{../resultAnalysis/getPrimaryDataView}">原始数据</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="/researchManage/getListAllMissionView">结果可视化分析</a>
+                            <a class="J_menuItem" th:href="@{../researchManage/getListAllMissionView}">结果可视化分析</a>
                         </li>
 
                     </ul>
@@ -136,10 +134,10 @@
                         <span class="nav-label">模板管理</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="/privateTemplateManage/getQesTemplateView">个人模板</a>
+                            <a class="J_menuItem" th:href="@{../privateTemplateManage/getQesTemplateView}">个人模板</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="/publicTemplateManage/getPublicTemplateView">公共模板</a>
+                            <a class="J_menuItem" th:href="@{../publicTemplateManage/getPublicTemplateView}">公共模板</a>
                         </li>
                     </ul>
                 </li>
@@ -152,31 +150,31 @@
                     </a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a class="J_menuItem" href="/notice/getMyNoticeView">查看公告</a>
+                            <a class="J_menuItem" th:href="@{../notice/getMyNoticeView}">查看公告</a>
                         </li>
                         <li>
-                            <a class="J_menuItem" href="/notice/getCreateNotice">创建公告</a>
+                            <a class="J_menuItem" th:href="@{../notice/getCreateNotice}">创建公告</a>
                         </li>
 
                     </ul>
                 </li>
                 <!--人员管理-->
                 <!--<li>-->
-                    <!--<a href="#">-->
-                        <!--<i class="fa fa-user-plus"></i>-->
-                        <!--<span class="nav-label">人员管理</span>-->
-                        <!--<span class="fa arrow"></span>-->
-                    <!--</a>-->
-                    <!--<ul class="nav nav-second-level">-->
-                        <!--<li>-->
-                            <!--<a class="J_menuItem" href="/userManage/getRoleAuthorityView">人员查询</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a class="J_menuItem" href="/userManage/getUploadView"-->
-                               <!--th:href="@{/userManage/getUploadView}">上传数据</a>-->
-                        <!--</li>-->
+                <!--<a href="#">-->
+                <!--<i class="fa fa-user-plus"></i>-->
+                <!--<span class="nav-label">人员管理</span>-->
+                <!--<span class="fa arrow"></span>-->
+                <!--</a>-->
+                <!--<ul class="nav nav-second-level">-->
+                <!--<li>-->
+                <!--<a class="J_menuItem" href="/userManage/getRoleAuthorityView">人员查询</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<a class="J_menuItem" href="/userManage/getUploadView"-->
+                <!--th:href="@{/userManage/getUploadView}">上传数据</a>-->
+                <!--</li>-->
 
-                    <!--</ul>-->
+                <!--</ul>-->
 
                 <!--</li>-->
             </ul>
@@ -230,12 +228,13 @@
                     </li>
                 </ul>
             </div>
-            <a href="/user/logout" th:href="@{/user/logout}" class="roll-nav roll-right J_tabExit">
+            <a href="/user/logout" th:href="@{../user/logout}" class="roll-nav roll-right J_tabExit">
                 <i class="fa fa fa-sign-out"></i>退出
             </a>
         </div>
         <div class="row J_mainContent" id="content-main">
-            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" th:src="@{/homeData/getHomeVO}" src="home.html"
+            <iframe class="J_iframe" name="iframe0" width="100%" height="100%" th:src="@{../homeData/getHomeVO}"
+                    src="home.html"
                     frameborder="0" data-id="home.html" seamless></iframe>
         </div>
         <div class="footer">
@@ -253,20 +252,20 @@
                 </h3>
             </div>
             <div class="sidebar-title">
-                <a href="#" class="J_menuItem" th:href="@{/userInfoManage/getChangeInfoView}">
+                <a href="#" class="J_menuItem" th:href="@{../userInfoManage/getChangeInfoView}">
                     <h3><i class="fa fa-file"></i> 信息维护</h3>
                 </a>
                 <small><i class="fa fa-tim"></i> 在此维护您的个人信息</small>
             </div>
             <div class="sidebar-title">
-                <a href="#" class="J_menuItem" th:href="@{/user/newPasswordView}">
+                <a href="#" class="J_menuItem" th:href="@{../user/newPasswordView}">
                     <h3><i class="fa fa-key"></i> 密码管理</h3>
                 </a>
                 <small><i class="fa fa-tim"></i> 在此进行密码的更改</small>
             </div>
             <div class="sidebar-title">
                 <!--<a href="#" th:href="@{/user/logout}">-->
-                <a class="J_menuTab" href="#" th:href="@{/user/logout}">
+                <a class="J_menuTab" href="#" th:href="@{../user/logout}">
                     <h3><i class="fa fa-sign-out"></i> 安全退出</h3>
                 </a>
             </div>
@@ -295,5 +294,4 @@
 <script src="/WEB-INF/js/plugins/pace/pace.min.js"
         th:src="@{/js/plugins/pace/pace.min.js}"></script>
 </body>
-
 </html>

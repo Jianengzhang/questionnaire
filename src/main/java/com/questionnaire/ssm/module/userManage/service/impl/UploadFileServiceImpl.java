@@ -389,6 +389,7 @@ public class UploadFileServiceImpl implements UploadFileService {
                 user.getUserTel(),
                 user.getUserRealName())
         );
+        user.setUserPicUrl("default.jpg");
 
         try {
             userMapper.insertSelective(user);

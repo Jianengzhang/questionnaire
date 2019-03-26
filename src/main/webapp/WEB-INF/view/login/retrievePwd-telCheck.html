@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>找回密码|账户确认</title>
-    <link rel="shortcut icon" href="../../img/favicon.ico"/>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/animate.css">
+    <link rel="shortcut icon" href="../../img/favicon.ico"
+          th:href="@{/img/favicon.ico}"/>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../../css/font-awesome.min.css"
+          th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="../../css/style.css"
+          th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="../../css/animate.css"
+          th:href="@{/css/animate.css}"/>
     <style>
         .contain-box {
             margin-top: 10%;
@@ -79,10 +84,14 @@
     </div>
 </script>
 
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/plugins/layer/layer.min.js"></script>
-<script src="../../js/plugins/validate/jquery.validate.min.js"></script>
-<script src="../../js/plugins/validate/messages_zh.min.js"></script>
+<script src="../../js/jquery.min.js"
+        th:src="@{/js/jquery.min.js}"></script>
+<script src="../../js/plugins/layer/layer.min.js"
+        th:src="@{/js/plugins/layer/layer.min.js}"></script>
+<script src="../../js/plugins/validate/jquery.validate.min.js"
+        th:src="@{/js/plugins/validate/jquery.validate.min.js}"></script>
+<script src="../../js/plugins/validate/messages_zh.min.js"
+        th:src="@{/js/plugins/validate/messages_zh.min.js}"></script>
 
 <script>
     var $phoneInput = $('#phone');
@@ -105,12 +114,11 @@
                 return;
             }
 
-            $.post('/retrievePwd/getVerifyCode', {phone: phoneStr}, function (responseData) {
+            $.post('../retrievePwd/getVerifyCode', {phone: phoneStr}, function (responseData) {
                 if (200 === responseData.code) {
                     layerTipInfo('获取验证码成功，请查收短信！', 1, 2000);
                     $getVCodeBtn.attr('disabled', 'disabled');
-                }
-                else {
+                } else {
                     layerTipInfo(responseData.message, 2, 2000);
                 }
             });
@@ -126,11 +134,10 @@
             }
 
             //发送数据到后台
-            $.post('/retrievePwd/checkVCode', {phone: phoneStr, verifyCode: verifyCodeStr}, function (responseData) {
+            $.post('../retrievePwd/checkVCode', {phone: phoneStr, verifyCode: verifyCodeStr}, function (responseData) {
                 if (200 === responseData.code) {
                     window.location.href = responseData.data;
-                }
-                else {
+                } else {
                     layerTipInfo(responseData.message, 2, 2000);
                 }
             });

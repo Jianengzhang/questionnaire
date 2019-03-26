@@ -5,7 +5,7 @@ var $table = $('#primaryDataTwoTable');
 
 $(function () {
     $table.bootstrapTable({
-        url: '/resultAnalysis/listAnswerPaper',
+        url: '../resultAnalysis/listAnswerPaper',
         method: 'post',
         dataType: 'json',
         cache: false,
@@ -68,7 +68,7 @@ var checkDataUrl = '';
 window.operateEvents = {
     //查看
     'click .check': function (e, value, row, index) {
-        checkDataUrl = '/resultAnalysis/getAnswerPaperInfo?answerPaperId=' + row.answerPaperId;
+        checkDataUrl = '../resultAnalysis/getAnswerPaperInfo?answerPaperId=' + row.answerPaperId;
         // layerMsg('查看', row, checkDataUrl);
         window.open(checkDataUrl);
     }

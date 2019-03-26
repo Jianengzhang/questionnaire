@@ -5,7 +5,7 @@ var $table = $('#missionManageTable');
 
 $(function () {
     $table.bootstrapTable({
-        url: '/researchManage/listMission',
+        url: '../researchManage/listMission',
         method: 'post',
         dataType: 'json',
         cache: false,
@@ -87,7 +87,7 @@ window.operateEvents = {
     //提醒
     'click .check': function (e, value, row, index) {
         // layer.alert(row.missionId + "||" + row.questionnaireId);
-        checkDataUrl = '/notice/getCreateNoticeForMission?missionId=' + row.missionId + '&qesId=' + row.questionnaireId;
+        checkDataUrl = '../notice/getCreateNoticeForMission?missionId=' + row.missionId + '&qesId=' + row.questionnaireId;
         layerMsg('提醒', row, checkDataUrl);
     },
     'click .pencil': function (e, value, row, index) {
@@ -95,14 +95,14 @@ window.operateEvents = {
             type: 2,
             title: '结束时间修改',
             maxmin: true,
-            content: '/researchManage/getMissionManageEditView?missionId=' + row.missionId,
+            content: '../researchManage/getMissionManageEditView?missionId=' + row.missionId,
             area: ['40%', '50%'],
             resize: true
         });
     },
     //删除问卷
     'click .remove': function (e, value, row, index) {
-        delMissionMagaUrl = '/researchManage/deleteMission?missionId' + row.missionId + '&questionnaireId=' + row.questionnaireId,
+        delMissionMagaUrl = '../researchManage/deleteMission?missionId' + row.missionId + '&questionnaireId=' + row.questionnaireId,
             layerConfirmSingle('确认删除吗?', row, delMissionMagaUrl);
     }
 };

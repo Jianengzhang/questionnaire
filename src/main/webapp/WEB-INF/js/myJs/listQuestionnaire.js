@@ -5,7 +5,7 @@
  */
 var $table = $('#myQesPaperTable');
 
-var tableDataUrl = '/questionnaireManage/listMyQuestionnaire';
+var tableDataUrl = '../questionnaireManage/listMyQuestionnaire';
 
 //批量模版按钮
 var $multiTemplateBtn = $('#multiTemplateBtn');
@@ -15,11 +15,11 @@ var $multiShareBtn = $('#multiShareBtn');
 var $multiDelBtn = $('#multiDelBtn');
 
 //批量模板化url
-var templateUrl = '/questionnaireManage/templateMultiQuestionnaire';
+var templateUrl = '../questionnaireManage/templateMultiQuestionnaire';
 //批量暂时删除url
-var delTemporaryUrl = '/questionnaireManage/delTemporaryMultiQuestionnaire';
+var delTemporaryUrl = '../questionnaireManage/delTemporaryMultiQuestionnaire';
 //批量共享url
-var shareUrl = '/questionnaireManage/shareMultiQuestionnaire';
+var shareUrl = '../questionnaireManage/shareMultiQuestionnaire';
 
 $(function () {
     $table.bootstrapTable({
@@ -87,7 +87,7 @@ window.operateEvents = {
     //查看问卷
     'click .scanPaper': function (e, value, row, index) {
         //查看问卷
-        var browseQesUrl = '/questionnaireManage/displayQuestionnaire';
+        var browseQesUrl = '../questionnaireManage/displayQuestionnaire';
         browseQesUrl += '/' + row.questionnaireId;
         browseQesPaper(browseQesUrl);
     },
@@ -97,12 +97,12 @@ window.operateEvents = {
     },
     //发布问卷
     'click .launchPaper': function (e, value, row, index) {
-        window.location.href = '/researchManage/createResearchView?questionnaireSelect=' + row.questionnaireId;
+        window.location.href = '../researchManage/createResearchView?questionnaireSelect=' + row.questionnaireId;
     },
     //继续编辑问卷
     'click .continueEdit': function (e, value, row, index) {
         // layer.msg('模块未发布', {icon: 4});
-        window.location.href = '/QesManageRest/getEditQesPaperView/' + row.questionnaireId;
+        window.location.href = '../QesManageRest/getEditQesPaperView/' + row.questionnaireId;
     },
     //模板化问卷
     'click .templatePaper': function (e, value, row, index) {

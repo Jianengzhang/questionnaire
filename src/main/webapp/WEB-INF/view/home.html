@@ -7,15 +7,15 @@
     <meta name="keywords" content="后台管理">
     <meta name="description" content="后台管理">
 
-    <link rel="shortcut icon" href="/WEB-INF/img/favicon.ico"
+    <link rel="shortcut icon" href="../img/favicon.ico"
           th:href="@{/img/favicon.ico}"/>
-    <link href="/WEB-INF/css/bootstrap.min.css" rel="stylesheet"
+    <link href="../css/bootstrap.min.css" rel="stylesheet"
           th:href="@{/css/bootstrap.min.css}">
     <link href="/WEB-INF/css/font-awesome.min.css" rel="stylesheet"
           th:href="@{/css/font-awesome.min.css}">
-    <link href="/WEB-INF/css/animate.css" rel="stylesheet"
+    <link href="../css/animate.css" rel="stylesheet"
           th:href="@{/css/animate.css}">
-    <link href="/WEB-INF/css/style.css" rel="stylesheet"
+    <link href="../css/style.css" rel="stylesheet"
           th:href="@{/css/style.css}">
 
     <style>
@@ -65,8 +65,10 @@
         </div>
     </div>
 </div>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/plugins/layer/layer.min.js"></script>
+<script src="../js/jquery.min.js"
+        th:src="@{../js/jquery.min.js}"></script>
+<script src="../js/plugins/layer/layer.min.js"
+        th:src="@{../js/plugins/layer/layer.min.js}"></script>
 <script>
     var $noticeList = $('#noticeList');
     var $missionList = $('#missionList');
@@ -78,7 +80,7 @@
 
     function getDynamicData() {
         //获取公告信息
-        $.getJSON('/homeData/getTop5NoticeForMe', function (noticeList) {
+        $.getJSON('../homeData/getTop5NoticeForMe', function (noticeList) {
             $noticeList.empty();
             _noticeDataList = noticeList;
             for (var i = 0; i < noticeList.length; i++) {
@@ -114,7 +116,7 @@
             }
         });
         //获取进行中的调查信息
-        $.getJSON('/researchManage/getReleasedMissions', function (releasedMissionList) {
+        $.getJSON('../researchManage/getReleasedMissions', function (releasedMissionList) {
             $missionList.empty();
             var circleTime = 0;
             if (releasedMissionList.length < 6) {
@@ -183,11 +185,11 @@
                     btnAlign: 'r',
                     moveType: 1, //拖拽模式，0或者1
                     content: '<div style="padding: 50px; line-height: 22px; background-color: #c7c7c7; color: #000; font-weight: 400;">' +
-                    '<h2 align="center">' + _noticeDataList[i].noticeTitle + '</h2>' +
-                    '<div style="background-color: #363636;height:1px;border: none;"></div> ' +
-                    '<h4 style="font-weight: 500">公告内容：</h4>&emsp;' + _noticeDataList[i].noticeContent + '<br>' +
-                    '<div class="h5" align="right"><i>' + _noticeDataList[i].createUnit + '</i></div>' +
-                    '<div class="h5" align="right">' + _noticeDataList[i].noticeLaunchDate + '</div> '
+                        '<h2 align="center">' + _noticeDataList[i].noticeTitle + '</h2>' +
+                        '<div style="background-color: #363636;height:1px;border: none;"></div> ' +
+                        '<h4 style="font-weight: 500">公告内容：</h4>&emsp;' + _noticeDataList[i].noticeContent + '<br>' +
+                        '<div class="h5" align="right"><i>' + _noticeDataList[i].createUnit + '</i></div>' +
+                        '<div class="h5" align="right">' + _noticeDataList[i].noticeLaunchDate + '</div> '
                 });
 
             }

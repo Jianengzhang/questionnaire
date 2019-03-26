@@ -10,7 +10,7 @@ var $multiDelBtn = $('#multiDelBtn');
 var $multiRestoreBtn = $('#multiRestoreBtn');
 $(function () {
     $table.bootstrapTable({
-        url: '/questionnaireManage/listTemporaryDeleteQesPaper',
+        url: '../questionnaireManage/listTemporaryDeleteQesPaper',
         method: 'post',
         dataType: 'json',
         cache: false,
@@ -71,8 +71,8 @@ $(function () {
     });
 });
 
-var restoreUrl = '/questionnaireManage/restoreMultiQuestionnaire';
-var deleteForeverUrl = '/questionnaireManage/delForeverMultiQuestionnaire';
+var restoreUrl = '../questionnaireManage/restoreMultiQuestionnaire';
+var deleteForeverUrl = '../questionnaireManage/delForeverMultiQuestionnaire';
 //单份处理
 window.operateEvents = {
     //永久删除

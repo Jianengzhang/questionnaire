@@ -16,7 +16,7 @@ $(function () {
     var unitOptions = '';
     var $noticeUnit = $('#noticeUnit');
     $.ajax({
-        url: '/unit/listUnitInfo',
+        url: '../unit/listUnitInfo',
         type: 'post',
         dataType: 'json',
         traditional: true,
@@ -128,7 +128,7 @@ function submitJsonData(launchDate, unitIds) {
     noticeInfo.noticeContent = $('#noticeContent').val();
     noticeInfo.launchDate = new Date(launchDate);
     noticeInfo.unitObjectIds = unitIds;
-    var url = '/notice/createNotice';
+    var url = '../notice/createNotice';
     if (isSubmitted) {
         return;
     }
@@ -148,7 +148,7 @@ function submitJsonData(launchDate, unitIds) {
                     shade: 0.5,
                     closeBtn: 1
                 }, function () {
-                    window.location.href = "/notice/getMyNoticeView";
+                    window.location.href = "../notice/getMyNoticeView";
                 });
             }
             dealGlobalError(data);

@@ -13,7 +13,7 @@
 <body>
 <div align="center">
 
-    <form action="/user/changPassword" method="post" th:object="${newPasswordVO}">
+    <form th:action="@{../user/changPassword}" method="post" th:object="${newPasswordVO}">
         <label>原密码:<input type="password" th:field="*{oldPassword}"
                           th:class="${#fields.hasErrors('oldPassword')}? fieldError"/></label><br/>
         <label>新密码：<input type="password" th:field="*{newPassword}"

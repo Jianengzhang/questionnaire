@@ -8,12 +8,12 @@ var $table = $('#noticeInfoTable');
 var $newNoticeBtn = $('#newNotice');
 //新建公告跳转
 $newNoticeBtn.on('click', function () {
-    window.location.href = "/notice/getCreateNotice?newNotice";
+    window.location.href = "../notice/getCreateNotice?newNotice";
 });
 
 $(function () {
     $table.bootstrapTable({
-        url: '/notice/listMyNotice',
+        url: '../notice/listMyNotice',
         method: 'post',
         dataType: 'json',
         cache: false,
@@ -76,7 +76,7 @@ $(function () {
     });
 });
 
-var deleteNoticeUrl = '/notice/deleteNotice';
+var deleteNoticeUrl = '../notice/deleteNotice';
 //单份处理
 window.operateEvents = {
     //永久删除

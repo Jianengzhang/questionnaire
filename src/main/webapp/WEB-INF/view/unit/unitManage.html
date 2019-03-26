@@ -4,17 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <title>单位管理-编辑</title>
-    <link rel="shortcut icon" href="../../img/favicon.ico"/>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="../../js/plugins/bootstrap-select/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="../../js/plugins/layui/css/layui.css">
+    <link rel="shortcut icon" href="../../img/favicon.ico"
+          th:href="@{/img/favicon.ico}"/>
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../../js/plugins/bootstrap-select/css/bootstrap-select.min.css"
+          th:href="@{/js/plugins/bootstrap-select/css/bootstrap-select.min.css}"/>
+    <link rel="stylesheet" href="../../js/plugins/layui/css/layui.css"
+          th:href="@{/js/plugins/layui/css/layui.css}"/>
     <style>
         .col-xs-2 {
             text-align: center;
         }
+
         .col-xs-4 {
             text-align: center;
         }
+
         .container {
             padding-right: 5px;
             padding-left: 5px;
@@ -48,7 +54,7 @@
                             <div class="control-label col-xs-2">单位编号：</div>
                             <div class="col-xs-9">
                                 <!-- 后端路径未填写,id修改过 -->
-                                <input id='unitCode' class="form-control"  placeholder="请填写单位编号"/>
+                                <input id='unitCode' class="form-control" placeholder="请填写单位编号"/>
                             </div>
                         </div>
                     </div>
@@ -60,7 +66,7 @@
                             <!-- 后端路径未填写，id已修改 -->
                             <div class="control-label col-xs-2">单位级别：</div>
                             <div class="col-xs-9">
-                                <input id="level" class="form-control"  placeholder="请填写单位级别"/>
+                                <input id="level" class="form-control" placeholder="请填写单位级别"/>
                             </div>
                         </div>
                     </div>
@@ -72,7 +78,7 @@
                             <!-- 后端路径未填写，id已修改 -->
                             <div class="control-label col-xs-2">所在省份：</div>
                             <div class="col-xs-9">
-                                <input id="province" class="form-control"  placeholder="请填写所在省份"/>
+                                <input id="province" class="form-control" placeholder="请填写所在省份"/>
                             </div>
                         </div>
                     </div>
@@ -84,7 +90,7 @@
                             <!-- 后端路径未填写，id已修改 -->
                             <div class="control-label col-xs-2">所在城市：</div>
                             <div class="col-xs-9">
-                                <input id="city" class="form-control"  placeholder="请填写所在城市"/>
+                                <input id="city" class="form-control" placeholder="请填写所在城市"/>
                             </div>
                         </div>
                     </div>
@@ -113,18 +119,23 @@
 </div>
 </div>
 
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
-<script src="../../js/plugins/bootstrap-select/js/i18n/defaults-zh_CN.min.js"></script>
-
-<script src="../../js/plugins/layui/layui.js"></script>
-<script src="../../js/myJs/responseAnalyze.js"></script>
+<script src="../../js/jquery.min.js"
+        th:src="@{/js/jquery.min.js}"></script>
+<script src="../../js/bootstrap.min.js"
+        th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../../js/plugins/bootstrap-select/js/bootstrap-select.min.js"
+        th:src="@{/js/plugins/bootstrap-select/js/bootstrap-select.min.js}"></script>
+<script src="../../js/plugins/bootstrap-select/js/i18n/defaults-zh_CN.min.js"
+        th:src="@{/js/plugins/bootstrap-select/js/i18n/defaults-zh_CN.min.js}"></script>
+<script src="../../js/plugins/layui/layui.js"
+        th:src="@{/js/plugins/layui/layui.js}"></script>
+<script src="../../js/myJs/responseAnalyze.js"
+        th:src="@{/js/myJs/responseAnalyze.js}"></script>
 
 
 <script>
     /*提交数据*/
-    $('#submitDataBtn').on('click',function(){
+    $('#submitDataBtn').on('click', function () {
         var newUnitInfo = {};
         //获取单位信息
         var unitName = $('#unitName').val();
@@ -133,8 +144,7 @@
         var unitProvince = $('#province').val();
         var unitCity = $('#city').val();
         var unitAddress = $('#address').val();
-        if(unitName == 'NULL')
-        {
+        if (unitName == 'NULL') {
             layui.use('layer', function () {
                 var layer = layui.layer;
                 layer.msg("单位名称不得为空!", function () {
@@ -142,8 +152,7 @@
             });
             return;
         }
-        if(unitName == 'NULL')
-        {
+        if (unitName == 'NULL') {
             layui.use('layer', function () {
                 var layer = layui.layer;
                 layer.msg("单位名称不得为空!", function () {
@@ -157,7 +166,7 @@
         newUnitInfo.unitProvince = unitProvince;
         newUnitInfo.unitCity = unitCity;
         newUnitInfo.address = unitAddress;
-        var AddUnitUrl = '/userManage/insertUnit';
+        var AddUnitUrl = '../userManage/insertUnit';
         layui.use('layer', function () {
             var layer = layui.layer;
             $.ajax({
@@ -190,6 +199,7 @@
     $('#cancelBtn').on('click', function () {
         layui.use('layer', closeLayer());
     });
+
     /**
      * 关闭 layer 层
      */

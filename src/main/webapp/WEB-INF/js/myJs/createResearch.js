@@ -11,7 +11,7 @@ $(function () {
     var qesItemOptions = '';
     var $questionnaireItem = $('select[name="questionnaireSelect"]');
     $.ajax({
-        url: '/researchManage/listQuestionnaireInfo',
+        url: '../researchManage/listQuestionnaireInfo',
         type: 'post',
         dataType: 'json',
         async: false,
@@ -38,7 +38,7 @@ $(function () {
     var unitOptions = '';
     var $researchUnit = $('#researchUnit');
     $.ajax({
-        url: '/unit/listUnitInfo',
+        url: '../unit/listUnitInfo',
         type: 'post',
         dataType: 'json',
         async: false,
@@ -212,7 +212,7 @@ function submitJsonData(missionDescription, unitIds, qesItemInfoArray) {
     if (isSubmitted) {
         return;
     }
-    var url = '/researchManage/createResearchMission';
+    var url = '../researchManage/createResearchMission';
     accessServerByJson(url, createResearchMissionVO);
 }
 /*重置按钮*/
@@ -250,7 +250,7 @@ function accessServerByJson(url, jsonData) {
         success: function (data) {
             if (200 === data.code) {
                 isSubmitted = true;
-                successResultLayer("操作成功！", '/researchManage/getMissionManageView');
+                successResultLayer("操作成功！", '../researchManage/getMissionManageView');
             }
             dealGlobalError(data);
         },

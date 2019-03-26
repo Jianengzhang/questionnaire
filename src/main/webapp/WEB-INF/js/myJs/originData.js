@@ -5,7 +5,7 @@ var $table = $('#primaryDataTable');
 
 $(function () {
     $table.bootstrapTable({
-        url: '/resultAnalysis/listPrimaryData',
+        url: '../resultAnalysis/listPrimaryData',
         method: 'post',
         dataType: 'json',
         cache: false,
@@ -74,12 +74,12 @@ var checkDataUrl = '';
 window.operateEvents = {
     //查看
     'click .check': function (e, value, row, index) {
-        checkDataUrl = '/resultAnalysis/getPrimaryDataTwo?missionId=' + row.missionId + '&qesId=' + row.questionnaireId;
+        checkDataUrl = '../resultAnalysis/getPrimaryDataTwo?missionId=' + row.missionId + '&qesId=' + row.questionnaireId;
         layerMsg('查看', row, checkDataUrl);
     },
     //导出
     'click .export': function (e, value, row, index) {
-        var exportDataUrl = '/export/exportTxtData2Excel?missionId=' + row.missionId + '&qesId=' + row.questionnaireId;
+        var exportDataUrl = '../export/exportTxtData2Excel?missionId=' + row.missionId + '&qesId=' + row.questionnaireId;
         window.location.href = exportDataUrl;
     }
 };

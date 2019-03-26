@@ -1,9 +1,9 @@
 /**
  * Created by 郑晓辉 on 2017/3/30.
  */
-var templateUrl = '/questionnaireManage/templateMultiQuestionnaire';
-var delTemporaryUrl = '/questionnaireManage/delTemporaryMultiQuestionnaire';
-var shareUrl = '/questionnaireManage/shareMultiQuestionnaire';
+var templateUrl = '../questionnaireManage/templateMultiQuestionnaire';
+var delTemporaryUrl = '../questionnaireManage/delTemporaryMultiQuestionnaire';
+var shareUrl = '../questionnaireManage/shareMultiQuestionnaire';
 
 
 $(function () {

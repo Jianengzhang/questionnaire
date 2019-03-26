@@ -29,7 +29,7 @@ function addOne2MyLib(templateId) {
  */
 function accessServer(templateIds) {
     $.ajax({
-        url: '/qesTemplateManage/add2MyTemplateLib',
+        url: '../qesTemplateManage/add2MyTemplateLib',
         type: 'post',
         data: {templateIds: templateIds},
         dataType: 'text',

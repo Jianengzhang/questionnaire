@@ -5,8 +5,8 @@
  */
 var $table = $('#allMissionTable');
 
-var tableDataUrl = '/researchManage/getReleasedMissions';
-var analyzeResultUrl = '/statisticalAnalysis/getAnalyzeResultView';
+var tableDataUrl = '../researchManage/getReleasedMissions';
+var analyzeResultUrl = '../statisticalAnalysis/getAnalyzeResultView';
 $(function () {
     $table.bootstrapTable({
         url: tableDataUrl,

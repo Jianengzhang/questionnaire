@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>答卷展示</title>
-    <link rel="shortcut icon" href="../../img/favicon.ico"/>
-    <link href="../../css/bootstrap.min.css" rel="stylesheet"/>
-
-    <link rel="stylesheet" href="../../js/CreateQesResources/skin/dropZone/basic.min.css"/>
-    <link rel="stylesheet" href="../../js/CreateQesResources/skin/dropZone/dropzone.min.css"/>
+    <link rel="shortcut icon" href="../../img/favicon.ico"
+          th:href="@{/img/favicon.ico}"/>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet"
+          th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../../js/CreateQesResources/skin/dropZone/basic.min.css"
+          th:href="@{/js/CreateQesResources/skin/dropZone/basic.min.css}"/>
+    <link rel="stylesheet" href="../../js/CreateQesResources/skin/dropZone/dropzone.min.css"
+          th:href="@{/js/CreateQesResources/skin/dropZone/basic.min.css}"/>
     <style>
         .print-btn {
             position: fixed;
@@ -111,7 +114,7 @@
                                     <div class="dz-preview dz-processing dz-image-preview dz-success dz-complete">
                                         <div class="dz-image">
                                             <img style="width: inherit;height: inherit;"
-                                                 th:src="@{/fileIo/refPic(picRelativePath=${ans})}"/>
+                                                 th:src="@{../fileIo/refPic(picRelativePath=${ans})}"/>
                                         </div>
                                     </div>
                                 </form>
@@ -142,10 +145,10 @@
     <script>
         $(function () {
             $('#prevPaperBtn').on('click', function () {
-                window.location.href = '/resultAnalysis/prevAnswerPaper';
+                window.location.href = '../resultAnalysis/prevAnswerPaper';
             });
             $('#nextPaperBtn').on('click', function () {
-                window.location.href = '/resultAnalysis/nextAnswerPaper';
+                window.location.href = '../resultAnalysis/nextAnswerPaper';
             })
         });
     </script>

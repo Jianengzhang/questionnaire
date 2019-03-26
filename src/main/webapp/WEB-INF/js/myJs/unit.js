@@ -3,13 +3,13 @@
  * Created by 周颖仁 on 2018/9/18.
  */
 var $table = $('#unitTable');
-var tableDataUrl = '/userManage/getAllUnit';
+var tableDataUrl = '../userManage/getAllUnit';
 
 
 //单位添加按钮
 var $addUnit = $('#addUnit');
 
-var addUnitUrl = '/userManage/addUnit';
+var addUnitUrl = '../userManage/addUnit';
 
 $(function () {
     $table.bootstrapTable({

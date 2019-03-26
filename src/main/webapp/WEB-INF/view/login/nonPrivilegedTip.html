@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +7,14 @@
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html"/>
     <![endif]-->
-    <link rel="shortcut icon" href="../../img/favicon.ico">
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/animate.css">
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="shortcut icon" href="../../img/favicon.ico"
+          th:href="@{/img/favicon.ico}">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../../css/animate.css"
+          th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../../css/style.css"
+          th:href="@{/css/style.css}">
     <style>
         .lockscreen.middle-box {
             width: 200px;
@@ -28,18 +32,21 @@
 <div class="middle-box text-center lockscreen animated fadeInDown">
     <div>
         <div id="infoTip" class="m-b-md">
-            <img alt="image" class="img-circle circle-border" src="../../img/infoTip.jpg">
+            <img alt="image" class="img-circle circle-border" th:href="@{/img/infoTip.jpg}" src="../../img/infoTip.jpg">
         </div>
     </div>
 </div>
 
 <div class="animated bounce" align="center">
     <h2>请通过平板设备访问系统<br/>
-        <i><h3>或者</h3></i>联系系统管理员改变您的系统角色</h2>
+        <i><h3>或者</h3></i>联系系统管理员改变您的系统角色
+    </h2>
 </div>
 <!-- 全局js -->
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/jquery.min.js"
+        th:src="@{/js/jquery.min.js}"></script>
+<script src="../../js/bootstrap.min.js"
+        th:src="@{/js/bootstrap.min.js}"></script>
 <script>
     $infoTip = $('#infoTip');
     $infoTip.hover(function () {

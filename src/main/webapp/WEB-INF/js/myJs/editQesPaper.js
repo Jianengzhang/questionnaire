@@ -163,7 +163,7 @@ function getQesVOData(isDone, isTemplate) {
     }
     dataBase.questionnaireId = exam.editingQesId;
     //访问服务器
-    var url = '/QesManageRest/postEditFinishQesData';
+    var url = '../QesManageRest/postEditFinishQesData';
 
     submitQesDataByJson(url, dataBase);
 }
@@ -184,7 +184,7 @@ function submitQesDataByJson(url, jsonData) {
                     shade: 0.5,
                     closeBtn: 1
                 }, function () {
-                    window.location.href = "/questionnaireManage/getListMyQesPaperView";
+                    window.location.href = "../questionnaireManage/getListMyQesPaperView";
                 });
             }
             dealGlobalError(data);

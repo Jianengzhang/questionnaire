@@ -4,7 +4,7 @@
  * Contact : zxh980278090@gmail.com
  */
 var $table = $('#roleAuthorityTable');
-var tableDataUrl = '/userManage/getRoleAuthority';
+var tableDataUrl = '../userManage/getRoleAuthority';
 //批量永久删除按钮
 var $multiDelBtn = $('#multiDelBtn');
 //批量启用按钮
@@ -12,9 +12,9 @@ var $multiEnableBtn = $('#multiEnableBtn');
 //批量禁用按钮
 var $multiDisableBtn = $('#multiDisableBtn');
 
-var deleteUserAccountUrl = '/userManage/multiDeleteUserAccount';
-var enableUserAccountUrl = '/userManage/multiEnableUserAccount';
-var disableUserAccountUrl = '/userManage/multiDisableUserAccount';
+var deleteUserAccountUrl = '../userManage/multiDeleteUserAccount';
+var enableUserAccountUrl = '../userManage/multiEnableUserAccount';
+var disableUserAccountUrl = '../userManage/multiDisableUserAccount';
 
 $(function () {
     $table.bootstrapTable({
@@ -94,7 +94,7 @@ window.operateEvents = {
             type: 2,
             title: '编辑内容',
             maxmin: true,
-            content: '/userManage/getRoleAuthorityManageView' +
+            content: '../userManage/getRoleAuthorityManageView' +
             '?userAccount=' + row.account
             + '&accountOwner=' + row.realName
             + '&userRole=' + row.userRole

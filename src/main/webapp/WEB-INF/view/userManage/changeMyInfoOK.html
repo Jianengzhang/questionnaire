@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>用户信息修改成功</title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/animate.css">
-    <link rel="stylesheet" href="../../js/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css "
+          th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../../css/animate.css"
+          th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../../js/plugins/layui/css/layui.css"
+          th:href="@{/js/plugins/layui/css/layui.css}">
 </head>
 <body>
 <div class="container">
@@ -28,7 +31,7 @@
                                        placeholder="姓名" disabled>
                             </div>
                         </div>
-                        <form id="userInfoForm" action="/userInfoManage/changeMyInfo" method="post">
+                        <form id="userInfoForm" action="../userInfoManage/changeMyInfo" method="post">
                             <div class="form-group">
                                 <label class="col-md-2 control-label">性别：</label>
                                 <div class="col-md-8">
@@ -72,8 +75,11 @@
 </div>
 </div>
 </div>
-<script src="../../js/jquery.min.js"></script>
-<script src="../../js/bootstrap.min.js"></script>
-<script src="../../js/plugins/layui/layui.js"></script>
+<script src="../../js/jquery.min.js"
+        th:src="@{/js/jquery.min.js}"></script>
+<script src="../../js/bootstrap.min.js"
+        th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../../js/plugins/layui/layui.js"
+        th:src="@{/js/plugins/layui/layui.js}"></script>
 </body>
 </html>
