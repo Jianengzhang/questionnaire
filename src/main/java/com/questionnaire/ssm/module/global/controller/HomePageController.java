@@ -38,6 +38,15 @@ public class HomePageController {
         modelAndView.addObject("myInfo", userInfoService.getUserInfoHomeVO(userTel));
         return modelAndView;
     }
+    @GetMapping(value = "/getCenterHomeVO")
+    public ModelAndView getCenterHomeVOData() throws Exception {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("centerHome");
+        String userTel = UserValidationUtil.getUserTel(logger);
+        modelAndView.addObject("myInfo", userInfoService.getUserInfoHomeVO(userTel));
+        return modelAndView;
+    }
+
 
     /**
      * 获取最新的5个公告信息
